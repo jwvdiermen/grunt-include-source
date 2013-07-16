@@ -53,7 +53,7 @@ module.exports = function(grunt) {
 		}
 
 		return results;
-	}
+	};
 
 	var parsers = {
 		'html': parseHtml,
@@ -68,7 +68,8 @@ module.exports = function(grunt) {
 		},
 		'scss':
 		{
-			'scss': '@import "{filePath}";'
+			'scss': '@import "{filePath}";',
+			'css': '@import "{filePath}";'
 		}
 	};
 

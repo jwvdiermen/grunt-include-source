@@ -51,17 +51,17 @@ A string value that is used to do something else with whatever else.
 *Not yet implemented*
 
 ### Include syntax
-Currently supported: `html`, `css`, `scss`
+Currently supported: `html`, `scss`
 
 #### HTML syntax
 `<!-- include: options_go_here_as_json -->`
 
-#### CSS & SCSS syntax
+#### SCSS syntax
 `// include: options_go_here_as_json`
 
 #### include.type
 The type of files that are being included.
-Currently supported: `html`, `css`
+Currently supported: `html`, `css`, `scss`
 
 #### include.bower
 Include files of the specified from the given Bower component.
