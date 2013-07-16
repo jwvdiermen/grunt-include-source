@@ -50,6 +50,28 @@ Default value: `{}`
 A string value that is used to do something else with whatever else.
 *Not yet implemented*
 
+### Include syntax
+Currently supported: `html`, `css`, `scss`
+
+#### HTML syntax
+`<!-- include: options_go_here_as_json -->`
+
+#### CSS & SCSS syntax
+`// include: options_go_here_as_json`
+
+#### include.type
+The type of files that are being included.
+Currently supported: `html`, `css`
+
+#### include.bower
+Include files of the specified from the given Bower component.
+
+#### include.files
+Include the given files. Files are passed through the `grunt.file.expand` method.
+
+#### include.basePath
+Set to override the `basePath` set in the options.
+
 ### Usage Examples
 Configure your task like this:
 
