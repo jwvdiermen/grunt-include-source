@@ -17,14 +17,14 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-include-source');
 ```
 
-## The "include_source" task
+## The "includeSource" task
 
 ### Overview
-In your project's Gruntfile, add a section named `include_source` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `includeSource` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-  include_source: {
+  includeSource: {
     options: {
       // Task-specific options go here.
     },
@@ -37,49 +37,62 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
+#### options.basePath
 Type: `String`
-Default value: `',  '`
+Default value: `''`
 
-A string value that is used to do something with whatever.
+The base path to use when expanding files.
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
+#### options.vars
+Type: `Object`
+Default value: `{}`
 
 A string value that is used to do something else with whatever else.
+*Not yet implemented*
 
 ### Usage Examples
-
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
-
-```js
-grunt.initConfig({
-  include_source: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+Configure your task like this:
 
 ```js
 grunt.initConfig({
   include_source: {
     options: {
-      separator: ': ',
-      punctuation: ' !!!',
+      basePath: 'app'
     },
     files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+      'dist/index.html': 'app/index.tpl.hml'
     },
   },
 })
+```
+
+The file `index.tpl.html` could contain, for example:
+```html
+<!doctype html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Index</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- 
+          Automatically include Bower components. Use the "sources" object in your bower.json
+          to specify which source files are which.
+        -->
+        <!-- include: "type": "css", "bower": "yourComponent" -->
+        
+        <!--
+          Include CSS files from a "tmp" directory, put there by another task.
+          This shows how to override the default "basePath" set in the options.
+        -->
+        <!-- include: "type": "css", "basePath": "tmp", "files": "styles/**/*.css" -->
+    </head>
+    <body>
+        <!-- include: "type": "js", "bower": "yourComponent" -->
+        <!-- include: "type": "js", "files": "scripts/**/*.js" -->
+    </body>
+</html>
 ```
 
 ## Contributing
