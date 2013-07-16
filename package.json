@@ -1,0 +1,45 @@
+{
+  "name": "grunt-include-source",
+  "description": "The best Grunt plugin ever.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/jwvdiermen/grunt-include-source",
+  "author": {
+    "name": "Jan Willem van Diermen",
+    "email": "jwvdiermen@2g-it.nl"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jwvdiermen/grunt-include-source.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jwvdiermen/grunt-include-source/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/jwvdiermen/grunt-include-source/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt": "~0.4.1"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.1"
+  },
+  "keywords": [
+    "gruntplugin"
+  ],
+  "dependencies": {
+    "grunt": "~0.4.1"
+  }
+}
