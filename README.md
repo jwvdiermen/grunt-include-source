@@ -97,10 +97,12 @@ grunt.initConfig({
     options: {
       basePath: 'app'
     },
-    files: {
-      'dist/index.html': 'app/index.tpl.html'
-    },
-  },
+    myTarget: {
+      files: {
+        'dist/index.html': 'app/index.tpl.html'
+      }
+    }
+  }
 })
 ```
 
