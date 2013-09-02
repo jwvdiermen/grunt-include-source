@@ -64,7 +64,23 @@ The type of files that are being included.
 Currently supported: `html`, `css`, `scss`
 
 #### include.bower
-Include files of the specified from the given Bower component.
+Include files of the specified Bower component. The component should have a `bower.json` meta data with a property called `sources`.
+This property should contain the files grouped by type, which are passed through the `grunt.file.expand` method.
+
+Example:
+```js
+{
+  "name": "package.name",
+  ...
+  "sources": {
+    "js": [
+      "src/scripts/**/*.js",
+      "lib/compiled-templates.js"
+    ],
+    "css": "src/styles/**/*.css"
+  }
+}
+```
 
 #### include.files
 Include the given files. Files are passed through the `grunt.file.expand` method.
@@ -82,7 +98,7 @@ grunt.initConfig({
       basePath: 'app'
     },
     files: {
-      'dist/index.html': 'app/index.tpl.hml'
+      'dist/index.html': 'app/index.tpl.html'
     },
   },
 })
