@@ -93,7 +93,7 @@ Configure your task like this:
 
 ```js
 grunt.initConfig({
-  include_source: {
+  includeSource: {
     options: {
       basePath: 'app'
     },
