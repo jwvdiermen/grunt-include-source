@@ -48,7 +48,7 @@ Type: `String`
 Default value: `''`
 
 The base URL to use for included files in the final result.
-For example, setting `baseUrl` to `public` will result in files being included from `public/path/to/your/file`.
+For example, setting `baseUrl` to `public/` will result in files being included from `public/path/to/your/file`.
 
 ### Include syntax
 Currently supported: `html`, `scss`
@@ -99,7 +99,7 @@ grunt.initConfig({
   includeSource: {
     options: {
       basePath: 'app',
-      includePath: 'public'
+      includePath: 'public/'
     },
     myTarget: {
       files: {
