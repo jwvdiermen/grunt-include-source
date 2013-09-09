@@ -43,12 +43,12 @@ Default value: `''`
 
 The base path to use when expanding files.
 
-#### options.vars
-Type: `Object`
-Default value: `{}`
+#### options.baseUrl
+Type: `String`
+Default value: `''`
 
-A string value that is used to do something else with whatever else.
-*Not yet implemented*
+The base URL to use for included files in the final result.
+For example, setting `baseUrl` to `public` will result in files being included from `public/path/to/your/file`.
 
 ### Include syntax
 Currently supported: `html`, `scss`
@@ -88,6 +88,9 @@ Include the given files. Files are passed through the `grunt.file.expand` method
 #### include.basePath
 Set to override the `basePath` set in the options.
 
+#### include.baseUrl
+Set to override the `baseUrl` set in the options.
+
 ### Usage Examples
 Configure your task like this:
 
@@ -95,7 +98,8 @@ Configure your task like this:
 grunt.initConfig({
   includeSource: {
     options: {
-      basePath: 'app'
+      basePath: 'app',
+      includePath: 'public'
     },
     myTarget: {
       files: {
@@ -131,6 +135,37 @@ The file `index.tpl.html` could contain, for example:
     <body>
         <!-- include: "type": "js", "bower": "yourComponent" -->
         <!-- include: "type": "js", "files": "scripts/**/*.js" -->
+    </body>
+</html>
+```
+And the resulting file `index.html` will look something like:
+```html
+<!doctype html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Index</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- 
+          Automatically include Bower components. Use the "sources" object in your bower.json
+          to specify which source files are which.
+        -->
+        <!-- include: "type": "css", "bower": "yourComponent" -->
+        
+        <!--
+          Include CSS files from a "tmp" directory, put there by another task.
+          This shows how to override the default "basePath" set in the options.
+        -->
+        <link href="public/styles/main.css" rel="stylesheet" type="text/css" />
+        <link href="public/styles/anotherFile.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <script src="public/bower_components/yourComponent/main.js"></script>
+        <script src="public/scripts/app.js"></script>
+        <script src="public/scripts/anotherFile.js"></script>
+        <script src="public/scripts/controllers/evenMore.js"></script>
     </body>
 </html>
 ```
