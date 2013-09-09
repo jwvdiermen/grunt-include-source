@@ -10,6 +10,7 @@
 
 module.exports = function(grunt) {
 	var path = require('path');
+	var url = require('url');
 	var os = require('os');
 	var util = require('util');
 
@@ -168,7 +169,7 @@ module.exports = function(grunt) {
 				var	includeFragments = [];
 				files.forEach(function(file) {
 					grunt.log.debug('Including file "' + file + '".');
-					includeFragments.push(typeTemplates[include.options.type].replace('{filePath}', path.join(include.options.baseUrl || options.baseUrl, file)));
+					includeFragments.push(typeTemplates[include.options.type].replace('{filePath}', url.resolve(include.options.baseUrl || options.baseUrl, file)));
 				});
 
 				var includeFragment = includeFragments.join(os.EOL);
