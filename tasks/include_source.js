@@ -168,7 +168,7 @@ module.exports = function(grunt) {
 				var	includeFragments = [];
 				files.forEach(function(file) {
 					grunt.log.debug('Including file "' + file + '".');
-					includeFragments.push(typeTemplates[include.options.type].replace('{filePath}', path.join(include.options.baseUrl || baseUrl, file)));
+					includeFragments.push(typeTemplates[include.options.type].replace('{filePath}', path.join(include.options.baseUrl || options.baseUrl, file)));
 				});
 
 				var includeFragment = includeFragments.join(os.EOL);
