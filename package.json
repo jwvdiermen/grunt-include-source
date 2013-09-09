@@ -1,6 +1,6 @@
 {
   "name": "grunt-include-source",
-  "description": "The best Grunt plugin ever.",
+  "description": "Include your sources into your HTML files automatically.",
   "version": "0.2.0",
   "homepage": "https://github.com/jwvdiermen/grunt-include-source",
   "author": {
