@@ -51,17 +51,17 @@ The base URL to use for included files in the final result.
 For example, setting `baseUrl` to `public/` will result in files being included from `public/path/to/your/file`.
 
 ### Include syntax
-Currently supported: `html`, `scss`
+Currently supported: `html`, `scss` and `less`
 
 #### HTML syntax
 `<!-- include: options_go_here_as_json -->`
 
-#### SCSS syntax
+#### SCSS and LESS syntax
 `// include: options_go_here_as_json`
 
 #### include.type
 The type of files that are being included.
-Currently supported: `html`, `css`, `scss`
+Currently supported: `html`, `css`, `scss`, `less`
 
 #### include.bower
 Include files of the specified Bower component. The component should have a `bower.json` meta data with a property called `sources`.

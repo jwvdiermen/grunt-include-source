@@ -36,29 +36,32 @@ module.exports = function(grunt) {
 	};
 
 	// Parses input SASS.
-	var parseSass = function(source) {
-		var re = /\/\/\s+include:\s+(.*)/gi,
-			matches,
-			results = [];
+	var parseSassOrLess = function(name) {
+		return function(source) {
+			var re = /\/\/\s+include:\s+(.*)/gi,
+				matches,
+				results = [];
 
-		grunt.log.debug('Parsing SASS...');
-		while ((matches = re.exec(source)) !== null) {
-			if (matches.length <= 1) continue;
-			grunt.log.debug('Got match, options are { ' + matches[1] + ' }.');
-			var optionsObj = JSON.parse("{" + matches[1] + "}");
-			results.push({
-				start: matches.index,
-				end: matches.index + matches[0].length - 1,
-				options: optionsObj
-			});
-		}
+			grunt.log.debug('Parsing ' + name + '...');
+			while ((matches = re.exec(source)) !== null) {
+				if (matches.length <= 1) continue;
+				grunt.log.debug('Got match, options are { ' + matches[1] + ' }.');
+				var optionsObj = JSON.parse("{" + matches[1] + "}");
+				results.push({
+					start: matches.index,
+					end: matches.index + matches[0].length - 1,
+					options: optionsObj
+				});
+			}
 
-		return results;
+			return results;
+		};
 	};
 
 	var parsers = {
 		'html': parseHtml,
-		'scss': parseSass
+		'scss': parseSassOrLess('SASS'),
+		'less': parseSassOrLess('LESS')
 	};
 
 	var templates = {
@@ -70,6 +73,11 @@ module.exports = function(grunt) {
 		'scss':
 		{
 			'scss': '@import "{filePath}";',
+			'css': '@import "{filePath}";'
+		},
+		'less':
+		{
+			'less': '@import "{filePath}";',
 			'css': '@import "{filePath}";'
 		}
 	};
