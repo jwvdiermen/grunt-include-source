@@ -147,7 +147,7 @@ module.exports = function(grunt) {
 		var options = this.options({
 			basePath: '',
 			baseUrl: '',
-			template: '',
+			template: ''
 		});
 
 		grunt.log.debug('Base path is "' + options.basePath + '".');
