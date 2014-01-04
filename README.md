@@ -50,6 +50,64 @@ Default value: `''`
 The base URL to use for included files in the final result.
 For example, setting `baseUrl` to `public/` will result in files being included from `public/path/to/your/file`.
 
+#### options.template
+Type: `String|Object`
+
+The templates for sources included in `html`, `scss`, `less` files. Definition of single template overrides its default equivalent only.
+
+Example:
+```js
+includeSource: {
+  options: {
+    basePath: 'app',
+    includePath: 'public/',
+    template: {
+      html: {
+        js: '<script src="{filePath}"></script>',
+        css: '<link rel="stylesheet" type="text/css" th:href="@{{filePath}}}" />',
+      },
+      scss: {
+        scss: '@import "{filePath}";',
+        css: '@import "{filePath}";',
+      },
+      less: {
+        less: '@import "{filePath}";',
+        css: '@import "{filePath}";',
+      }
+    }
+  },
+  myTarget: {
+    files: {
+      'dist/index.html': 'app/index.tpl.html'
+    }
+  }
+}
+```
+
+As it was mentioned above, it is possible to override only necessary templates. 
+
+Example (using Thymeleaf template engine):
+```js
+includeSource: {
+  options: {
+    basePath: 'app',
+    includePath: 'public/',
+    template: {
+      html: {
+        js: '<script type="text/javascript" th:src="@{{filepath}}}"></script>'
+        // or css: '<link rel="stylesheet" type="text/css" th:href="@{{filePath}}}" />'
+      }
+    }
+  },
+  myTarget: {
+    files: {
+      'dist/index.html': 'app/index.tpl.html'
+    }
+  }
+}
+```
+
+
 ### Include syntax
 Currently supported: `html`, `scss` and `less`
 
