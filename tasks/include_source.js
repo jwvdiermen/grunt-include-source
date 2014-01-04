@@ -122,13 +122,32 @@ module.exports = function(grunt) {
 		return results;
 	};
 
+	var resolveTemplates = function (templatesDef, fileType) {
+		var resultTemplates = templates[fileType];
+
+		if (templatesDef[fileType]) {
+			if (fileType === 'html') {
+				resultTemplates['js'] = templatesDef[fileType]['js'] ? 
+					templatesDef[fileType]['js'] : resultTemplates['js'];
+			} else {
+				resultTemplates[fileType] = templatesDef[fileType][fileType] ? 
+					templatesDef[fileType][fileType] : resultTemplates[fileType];
+			}
+			resultTemplates['css'] = templatesDef[fileType]['css'] ? 
+				templatesDef[fileType]['css'] : resultTemplates['css'];
+		}
+
+		return resultTemplates;
+	};
+
 	// Register the task.
 	grunt.registerMultiTask('includeSource', 'Include lists of files into your source files automatically.', function() {
 		grunt.log.debug('Starting task "includeSource"...');
 
 		var options = this.options({
 			basePath: '',
-			baseUrl: ''
+			baseUrl: '',
+			template: '',
 		});
 
 		grunt.log.debug('Base path is "' + options.basePath + '".');
