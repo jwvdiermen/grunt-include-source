@@ -94,7 +94,7 @@ includeSource: {
     includePath: 'public/',
     template: {
       html: {
-        js: '<script type="text/javascript" th:src="@{{filepath}}}"></script>'
+        js: '<script type="text/javascript" th:src="@{{filePath}}}"></script>'
         // or css: '<link rel="stylesheet" type="text/css" th:href="@{{filePath}}}" />'
       }
     }
