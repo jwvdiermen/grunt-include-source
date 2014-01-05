@@ -183,7 +183,7 @@ module.exports = function(grunt) {
 			}
 
 			// Get the available templates.
-			var typeTemplates = templates[fileType];
+			var typeTemplates = resolveTemplates(options.template, fileType);
 
 			// Get the includes and rewrite the contents.
 			var includes = parserFn(contents);
