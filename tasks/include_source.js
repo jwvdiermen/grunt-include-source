@@ -13,6 +13,7 @@ module.exports = function(grunt) {
 	var url = require('url');
 	var os = require('os');
 	var util = require('util');
+	var extendr = require('extendr');
 
 	// Parses input HTML and returns an array of include statements and their position.
 	var parseHtml = function(source) {
@@ -128,7 +129,8 @@ module.exports = function(grunt) {
 
 		var options = this.options({
 			basePath: '',
-			baseUrl: ''
+			baseUrl: '',
+			templates: {}
 		});
 
 		grunt.log.debug('Base path is "' + options.basePath + '".');
@@ -164,7 +166,9 @@ module.exports = function(grunt) {
 			}
 
 			// Get the available templates.
-			var typeTemplates = templates[fileType];
+			var localTemplates = extendr.deepClone(templates);
+			extendr.safeDeepExtendPlainObjects(localTemplates, options.templates);
+			var typeTemplates = localTemplates[fileType];
 
 			// Get the includes and rewrite the contents.
 			var includes = parserFn(contents);
