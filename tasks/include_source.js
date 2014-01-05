@@ -13,6 +13,7 @@ module.exports = function(grunt) {
 	var url = require('url');
 	var os = require('os');
 	var util = require('util');
+	var extendr = require('extendr');
 
 	// Parses input HTML and returns an array of include statements and their position.
 	var parseHtml = function(source) {
@@ -122,24 +123,6 @@ module.exports = function(grunt) {
 		return results;
 	};
 
-	var resolveTemplates = function (templatesDef, fileType) {
-		var resultTemplates = templates[fileType];
-
-		if (templatesDef[fileType]) {
-			if (fileType === 'html') {
-				resultTemplates['js'] = templatesDef[fileType]['js'] ? 
-					templatesDef[fileType]['js'] : resultTemplates['js'];
-			} else {
-				resultTemplates[fileType] = templatesDef[fileType][fileType] ? 
-					templatesDef[fileType][fileType] : resultTemplates[fileType];
-			}
-			resultTemplates['css'] = templatesDef[fileType]['css'] ? 
-				templatesDef[fileType]['css'] : resultTemplates['css'];
-		}
-
-		return resultTemplates;
-	};
-
 	// Register the task.
 	grunt.registerMultiTask('includeSource', 'Include lists of files into your source files automatically.', function() {
 		grunt.log.debug('Starting task "includeSource"...');
@@ -147,7 +130,7 @@ module.exports = function(grunt) {
 		var options = this.options({
 			basePath: '',
 			baseUrl: '',
-			template: ''
+			templates: {}
 		});
 
 		grunt.log.debug('Base path is "' + options.basePath + '".');
@@ -183,7 +166,9 @@ module.exports = function(grunt) {
 			}
 
 			// Get the available templates.
-			var typeTemplates = resolveTemplates(options.template, fileType);
+			var localTemplates = extendr.deepClone(templates);
+			extendr.safeDeepExtendPlainObjects(localTemplates, options.templates);
+			var typeTemplates = localTemplates[fileType];
 
 			// Get the includes and rewrite the contents.
 			var includes = parserFn(contents);
