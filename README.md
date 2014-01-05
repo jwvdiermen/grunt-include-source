@@ -50,8 +50,8 @@ Default value: `''`
 The base URL to use for included files in the final result.
 For example, setting `baseUrl` to `public/` will result in files being included from `public/path/to/your/file`.
 
-#### options.template
-Type: `String|Object`
+#### options.templates
+Type: `Object`
 
 The templates for sources included in `html`, `scss`, `less` files. Definition of single template overrides its default equivalent only.
 
