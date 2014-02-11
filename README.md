@@ -60,7 +60,7 @@ Example:
 includeSource: {
   options: {
     basePath: 'app',
-    includePath: 'public/',
+    baseUrl: 'public/',
     template: {
       html: {
         js: '<script src="{filePath}"></script>',
@@ -91,7 +91,7 @@ Example (using Thymeleaf template engine):
 includeSource: {
   options: {
     basePath: 'app',
-    includePath: 'public/',
+    baseUrl: 'public/',
     template: {
       html: {
         js: '<script type="text/javascript" th:src="@{{filePath}}}"></script>'
@@ -157,7 +157,7 @@ grunt.initConfig({
   includeSource: {
     options: {
       basePath: 'app',
-      includePath: 'public/'
+      baseUrl: 'public/'
     },
     myTarget: {
       files: {
