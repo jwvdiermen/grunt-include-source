@@ -23,7 +23,9 @@ module.exports = function(grunt) {
 
 		grunt.log.debug('Parsing HTML...');
 		while ((matches = re.exec(source)) !== null) {
-			if (matches.length <= 1) continue;
+			if (matches.length <= 1) {
+				continue;
+			}
 			grunt.log.debug('Got match, options are { ' + matches[1] + ' }.');
 			var optionsObj = JSON.parse("{" + matches[1] + "}");
 			results.push({
@@ -45,7 +47,9 @@ module.exports = function(grunt) {
 
 			grunt.log.debug('Parsing ' + name + '...');
 			while ((matches = re.exec(source)) !== null) {
-				if (matches.length <= 1) continue;
+				if (matches.length <= 1) {
+					continue;
+				}
 				grunt.log.debug('Got match, options are { ' + matches[1] + ' }.');
 				var optionsObj = JSON.parse("{" + matches[1] + "}");
 				results.push({
