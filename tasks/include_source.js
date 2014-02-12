@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 
 	// Parses input HTML and returns an array of include statements and their position.
 	var parseHtml = function(source) {
-		var re = /<!--\s+include:\s+(.*)\s+-->/gi,
+		var re = /<!---?\s*include:\s+(.*)\s*-?--\s*>/gi,
 			matches,
 			results = [];
 
