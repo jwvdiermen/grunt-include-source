@@ -102,7 +102,7 @@ module.exports = function(grunt) {
 			files = sources[includeOptions.type];
 		} else {
 			grunt.log.debug('Resolving files from include property...');
-			files = includeOptions.files;
+			files = includeOptions.files.split(',');
 		}
 
 		if (!files) {
