@@ -61,7 +61,7 @@ includeSource: {
   options: {
     basePath: 'app',
     baseUrl: 'public/',
-    template: {
+    templates: {
       html: {
         js: '<script src="{filePath}"></script>',
         css: '<link rel="stylesheet" type="text/css" th:href="@{{filePath}}}" />',
