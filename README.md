@@ -192,7 +192,7 @@ The file `index.tpl.html` could contain, for example:
     </head>
     <body>
         <!-- include: "type": "js", "bower": "yourComponent" -->
-        <!-- include: "type": "js", "files": "scripts/**/*.js" -->
+        <!-- include: "type": "js", "files": "scripts/libs/**/*.js, scripts/app/**/*.js" -->
     </body>
 </html>
 ```
@@ -221,9 +221,10 @@ And the resulting file `index.html` will look something like:
     </head>
     <body>
         <script src="public/bower_components/yourComponent/main.js"></script>
-        <script src="public/scripts/app.js"></script>
-        <script src="public/scripts/anotherFile.js"></script>
-        <script src="public/scripts/controllers/evenMore.js"></script>
+        <script src="public/scripts/libs/anyfile.js"></script>
+        <script src="public/scripts/app/app.js"></script>
+        <script src="public/scripts/app/anotherFile.js"></script>
+        <script src="public/scripts/app/controllers/evenMore.js"></script>
     </body>
 </html>
 ```
