@@ -87,7 +87,6 @@ module.exports = function(grunt) {
 		if (includeOptions.basePath) {
 			basePath = includeOptions.basePath;
 		}
-		basePath = grunt.template.process(basePath, grunt.config.get());
 		grunt.log.debug('Resolving files on base path "' + basePath + '"...');
 		grunt.log.debug('Include options: ' + util.inspect(includeOptions));
 
