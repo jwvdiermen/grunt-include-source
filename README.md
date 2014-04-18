@@ -149,13 +149,13 @@ Set to override the `basePath` set in the options.
 #### include.baseUrl
 Set to override the `baseUrl` set in the options.
 
-#### options.ordering
+#### include.ordering
 Type: `String`
-Default value: none
+Default value: undefined
 
-File ordering method to be used when including files. Currently supported methods are:
-* {'natural'} (default) - files are sorted by their paths alphabetically in ascending order.
-* {'top-down'} - files in parent directory will be included before files in subdirectories.
+Ordering method to be used when including files. Currently supported methods are:
+* `undefined` (default) - included files are sorted by their paths alphabetically in ascending order.
+* `'top-down'` - files from the parent directory will be included before files from subdirectories.
   
 ### Usage Examples
 Configure your task like this:
