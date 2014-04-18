@@ -123,6 +123,40 @@ module.exports = function(grunt) {
 		return results;
 	};
 
+	var pathCompareNatural = function (path1, path2) {
+		if (path1 > path2) {
+			return 1;
+		} else if (path1 < path2) {
+			return -1;
+		} else { 
+			return 0;
+		}
+	};
+
+	var pathCompareTopDown = function (path1, path2) {
+		var seg1 = path1.split(/[\\/]/);
+		var seg2 = path2.split(/[\\/]/);
+		var i, j;
+				
+		if (seg1.length == seg2.length) {
+			return pathCompareNatural(path1, path2);
+		} else {
+			j = Math.min(seg1.length, seg2.length) - 1;
+			for (i = 0; i < j; ++i) {
+				if (seg1[i] != seg2[i]) {
+					return pathCompareNatural(path1, path2);
+				}
+			}
+			return seg1.length - seg2.length;
+		}				
+	};		
+	
+	var orderFiles = function (files, includeOptions) {
+		if ('top-down' == includeOptions.ordering) {
+			files.sort(pathCompareTopDown);		
+		}
+	};
+	
 	// Register the task.
 	grunt.registerMultiTask('includeSource', 'Include lists of files into your source files automatically.', function() {
 		grunt.log.debug('Starting task "includeSource"...');
@@ -178,13 +212,23 @@ module.exports = function(grunt) {
 
 			includes.forEach(function(include) {
 				var files = resolveFiles(options.basePath, include.options);
+				orderFiles(files, include.options);
+	
+				var sep = os.EOL;
+				var i;
+				for (i = include.start + currentOffset - 1; i > 0 && (contents[i] == '\t' || contents[i] == ' '); --i);
+				if (i == 0 || contents[i] == '\r' || contents[i] == '\n') {
+					if (i > 0) ++i;
+					sep += contents.substr(i, include.start + currentOffset - i);
+				}
+				
 				var	includeFragments = [];
 				files.forEach(function(file) {
 					grunt.log.debug('Including file "' + file + '".');
 					includeFragments.push(typeTemplates[include.options.type].replace('{filePath}', url.resolve(include.options.baseUrl || options.baseUrl, file)));
 				});
 
-				var includeFragment = includeFragments.join(os.EOL);
+				var includeFragment = includeFragments.join(sep);
 
 				contents =
 					contents.substr(0, include.start + currentOffset) +
