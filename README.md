@@ -53,7 +53,7 @@ For example, setting `baseUrl` to `public/` will result in files being included 
 #### options.templates
 Type: `Object`
 
-The templates for sources included in `html`, `scss`, `less` files. Definition of single template overrides its default equivalent only.
+The templates for sources included in `html`, `haml`, `scss`, `less` files. Definition of single template overrides its default equivalent only.
 
 Example:
 ```js
@@ -65,6 +65,10 @@ includeSource: {
       html: {
         js: '<script src="{filePath}"></script>',
         css: '<link rel="stylesheet" type="text/css" th:href="@{{filePath}}}" />',
+      },
+      haml: {
+        js: '%script{src: "{filePath}"}/',
+        css: '%link{href: "{filePath}", rel: "stylesheet"}/'
       },
       scss: {
         scss: '@import "{filePath}";',
@@ -109,7 +113,7 @@ includeSource: {
 
 
 ### Include syntax
-Currently supported: `html`, `scss` and `less`
+Currently supported: `html`, `haml`, `scss` and `less`
 
 #### HTML syntax
 `<!-- include: options_go_here_as_json -->`
