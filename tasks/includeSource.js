@@ -15,57 +15,13 @@ module.exports = function(grunt) {
 	var util = require('util');
 	var extendr = require('extendr');
 
-	// Parses input HTML and returns an array of include statements and their position.
-	var parseHtml = function(source) {
-		var re = /<!---?\s*include:\s+(.*)\s*-?--\s*>/gi,
-			matches,
-			results = [];
-
-		grunt.log.debug('Parsing HTML...');
-		while ((matches = re.exec(source)) !== null) {
-			if (matches.length <= 1) continue;
-			grunt.log.debug('Got match, options are { ' + matches[1] + ' }.');
-			var optionsObj = JSON.parse("{" + matches[1] + "}");
-			results.push({
-				start: matches.index,
-				end: matches.index + matches[0].length - 1,
-				options: optionsObj
-			});
-		}
-
-		return results;
-	};
-
-	// Parses input HAML
-	var parseHaml = function(source) {
-		var re = /-#\s+include:\s+(.*)/gi,
-			matches,
-			results = [];
-
-		grunt.log.debug('Parsing HAML...');
-		while ((matches = re.exec(source)) !== null) {
-			if (matches.length <= 1) continue;
-			grunt.log.debug('Got match, options are { ' + matches[1] + ' }.');
-			var optionsObj = JSON.parse("{" + matches[1] + "}");
-			results.push({
-				start: matches.index,
-				end: matches.index + matches[0].length - 1,
-				options: optionsObj
-			});
-		}
-
-		return results;
-	};
-
-	// Parses input SASS.
-	var parseSassOrLess = function(name) {
+	var parseSource = function (name, pattern) {
 		return function(source) {
-			var re = /\/\/\s+include:\s+(.*)/gi,
-				matches,
+			var matches,
 				results = [];
 
 			grunt.log.debug('Parsing ' + name + '...');
-			while ((matches = re.exec(source)) !== null) {
+			while ((matches = pattern.exec(source)) !== null) {
 				if (matches.length <= 1) continue;
 				grunt.log.debug('Got match, options are { ' + matches[1] + ' }.');
 				var optionsObj = JSON.parse("{" + matches[1] + "}");
@@ -81,10 +37,10 @@ module.exports = function(grunt) {
 	};
 
 	var parsers = {
-		'html': parseHtml,
-		'haml': parseHaml,
-		'scss': parseSassOrLess('SASS'),
-		'less': parseSassOrLess('LESS')
+		'html': parseSource('HTML', /<!---?\s*include:\s+(.*)\s*-?--\s*>/gi),
+		'haml': parseSource('HAML', /-#\s+include:\s+(.*)/gi),
+		'scss': parseSource('SASS', /\/\/\s+include:\s+(.*)/gi),
+		'less': parseSource('LESS', /\/\/\s+include:\s+(.*)/gi)
 	};
 
 	var templates = {
