@@ -64,7 +64,7 @@ includeSource: {
     templates: {
       html: {
         js: '<script src="{filePath}"></script>',
-        css: '<link rel="stylesheet" type="text/css" th:href="@{{filePath}}}" />',
+        css: '<link rel="stylesheet" type="text/css" href="{filePath}" />',
       },
       haml: {
         js: '%script{src: "{filePath}"}/',
@@ -89,28 +89,6 @@ includeSource: {
 ```
 
 As it was mentioned above, it is possible to override only necessary templates. 
-
-Example (using Thymeleaf template engine):
-```js
-includeSource: {
-  options: {
-    basePath: 'app',
-    baseUrl: 'public/',
-    template: {
-      html: {
-        js: '<script type="text/javascript" th:src="@{{filePath}}}"></script>'
-        // or css: '<link rel="stylesheet" type="text/css" th:href="@{{filePath}}}" />'
-      }
-    }
-  },
-  myTarget: {
-    files: {
-      'dist/index.html': 'app/index.tpl.html'
-    }
-  }
-}
-```
-
 
 ### Include syntax
 Currently supported: `html`, `haml`, `scss` and `less`
