@@ -227,6 +227,14 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+### 2014-04-27 ver. 0.3.7
+
+* DEPRECATED: Bower support, see readme.
+* support for HAML (see https://github.com/jwvdiermen/grunt-include-source/pull/17)
+* tags generated for HTML now use HTML5 syntax by default.
+* added basic tests
+* updated dependencies.
+
 ### 2014-04-18 ver. 0.3.6
 
 * added support for `include.ordering` option. 
