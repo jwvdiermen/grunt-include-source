@@ -153,6 +153,14 @@ Set to override the `basePath` set in the options.
 #### include.baseUrl
 Set to override the `baseUrl` set in the options.
 
+#### include.ordering
+Type: `String`
+Default value: `undefined`
+
+Ordering method to be used when including files. Currently supported methods are:
+* `undefined` (default) - included files are sorted by their paths alphabetically in ascending order.
+* `'top-down'` - files from the parent directory will be included before files from subdirectories.
+  
 ### Usage Examples
 Configure your task like this:
 
@@ -236,4 +244,8 @@ And the resulting file `index.html` will look something like:
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-_(Nothing yet)_
+
+### 2014-04-18 ver. 0.3.6
+
+* added support for `include.ordering` option. 
+* added automated indentation for included entries (see https://github.com/jwvdiermen/grunt-include-source/issues/14)
