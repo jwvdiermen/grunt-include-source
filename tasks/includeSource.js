@@ -51,8 +51,8 @@ module.exports = function(grunt) {
 		},
 		'haml':
 		{
-			'js': '%script{src: "{filePath}", type: "text/javascript"}/',    
-			'css': '%link{href: "{filePath}", rel: "stylesheet", type="text/css"}/'
+			'js': '%script{src: "{filePath}", type: "text/javascript"}',    
+			'css': '%link{href: "{filePath}", rel: "stylesheet", type: "text/css"}/'
 		},
 		'scss':
 		{
