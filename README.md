@@ -101,7 +101,8 @@ Currently supported: `html`, `haml`, `scss` and `less`
 
 #### include.type
 The type of files that are being included.
-Currently supported: `html`, `css`, `scss`, `less`
+Necessary for choosing the template for output. See `options.templates` for currently supported types.
+Supported types are dependend on the file type you include them from.
 
 #### include.bower
 Include files of the specified Bower component. The component should have a `bower.json` meta data with a property called `sources`.
