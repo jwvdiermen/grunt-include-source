@@ -46,13 +46,13 @@ module.exports = function(grunt) {
 	var templates = {
 		'html':
 		{
-			'js': '<script src="{filePath}"></script>',
-			'css': '<link href="{filePath}" rel="stylesheet" type="text/css" />'
+			'js': '<script type="text/javascript" src="{filePath}"></script>',
+			'css': '<link href="{filePath}" rel="stylesheet" type="text/css">'
 		},
 		'haml':
 		{
-			'js': '%script{src: "{filePath}"}/',    
-			'css': '%link{href: "{filePath}", rel: "stylesheet"}/'
+			'js': '%script{src: "{filePath}", type: "text/javascript"}/',    
+			'css': '%link{href: "{filePath}", rel: "stylesheet", type="text/css"}/'
 		},
 		'scss':
 		{
