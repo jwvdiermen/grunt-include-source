@@ -105,6 +105,9 @@ Necessary for choosing the template for output. See `options.templates` for curr
 Supported types are dependend on the file type you include them from.
 
 #### include.bower
+**DEPRECATED**: Use another Grunt plugin which is better suited for this usecase, like [grunt-bower-install](https://github.com/stephenplusplus/grunt-bower-install).
+This plugin doesn't support the `main` property for example and is mainly used for development purposes to directly include external sources.
+
 Include files of the specified Bower component. The component should have a `bower.json` meta data with a property called `sources`.
 This property should contain the files grouped by type, which are passed through the `grunt.file.expand` method.
 
