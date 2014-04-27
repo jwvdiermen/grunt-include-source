@@ -31,29 +31,36 @@ module.exports = function(grunt) {
 		// Configuration to be run (and then tested).
 		// For testing, we simply execute some tasks and validate the output.
 		includeSource: {
-			default_options: {
-				options: {
-				},
-				files: {
-					'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123'],
-				},
+			options: {
+				basePath: 'test/files',
+				baseUrl: ''
 			},
-			custom_options: {
-				options: {
-					separator: ': ',
-					punctuation: ' !!!',
-				},
+			htmlTest: {
 				files: {
-					'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123'],
-				},
+					'tmp/index.html': 'test/files/index.html'
+				}
 			},
+			hamlTest: {
+				files: {
+					'tmp/index.haml': 'test/files/index.haml'
+				}
+			},
+			lessTest: {
+				files: {
+					'tmp/main.less': 'test/files/main.less'
+				}
+			},
+			scssTest: {
+				files: {
+					'tmp/main.scss': 'test/files/main.scss'
+				}
+			}
 		},
 
 		// Unit tests.
 		nodeunit: {
 			tests: ['test/*_test.js'],
-		},
-
+		}
 	});
 
 	// Actually load this plugin's task(s).
