@@ -121,12 +121,12 @@ module.exports = function(grunt) {
 		var seg2 = path2.split(/[\\/]/);
 		var i, j;
 				
-		if (seg1.length == seg2.length) {
+		if (seg1.length === seg2.length) {
 			return pathCompareNatural(path1, path2);
 		} else {
 			j = Math.min(seg1.length, seg2.length) - 1;
 			for (i = 0; i < j; ++i) {
-				if (seg1[i] != seg2[i]) {
+				if (seg1[i] !== seg2[i]) {
 					return pathCompareNatural(path1, path2);
 				}
 			}
@@ -135,7 +135,7 @@ module.exports = function(grunt) {
 	};		
 	
 	var orderFiles = function (files, includeOptions) {
-		if ('top-down' == includeOptions.ordering) {
+		if ('top-down' === includeOptions.ordering) {
 			files.sort(pathCompareTopDown);		
 		}
 	};
@@ -199,8 +199,8 @@ module.exports = function(grunt) {
 	
 				var sep = os.EOL;
 				var i;
-				for (i = include.start + currentOffset - 1; i > 0 && (contents[i] == '\t' || contents[i] == ' '); --i);
-				if (i == 0 || contents[i] == '\r' || contents[i] == '\n') {
+				for (i = include.start + currentOffset - 1; i > 0 && (contents[i] === '\t' || contents[i] === ' '); --i);
+				if (i === 0 || contents[i] === '\r' || contents[i] === '\n') {
 					if (i > 0) ++i;
 					sep += contents.substr(i, include.start + currentOffset - i);
 				}
