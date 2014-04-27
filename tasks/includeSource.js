@@ -38,7 +38,7 @@ module.exports = function(grunt) {
 
 	// Parses input HAML
 	var parseHaml = function(source) {
-		var re = /\s+include:\s+(.*)/gi,
+		var re = /-#\s+include:\s+(.*)/gi,
 			matches,
 			results = [];
 
