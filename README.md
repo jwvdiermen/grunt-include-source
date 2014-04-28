@@ -1,6 +1,6 @@
 # grunt-include-source
 
-> Include your sources into your HTML files automatically. Also supports including Bower components that expose their source files via the *sources* property in the `bower.json` file.
+> Include your sources into your HTML files automatically.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.4`
