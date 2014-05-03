@@ -208,7 +208,10 @@ module.exports = function(grunt) {
 				var	includeFragments = [];
 				files.forEach(function(file) {
 					grunt.log.debug('Including file "' + file + '".');
-					includeFragments.push(typeTemplates[include.options.type].replace('{filePath}', url.resolve(include.options.baseUrl || options.baseUrl, file)));
+					includeFragments.push(typeTemplates[include.options.type]
+						.replace(/\{filePath\}/g, url.resolve(include.options.baseUrl || options.baseUrl, file))
+						.replace(/\{filePathDecoded\}/g, decodeURI(url.resolve(include.options.baseUrl || options.baseUrl, file)))
+						);
 				});
 
 				var includeFragment = includeFragments.join(sep);
