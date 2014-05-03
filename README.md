@@ -227,6 +227,11 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+### 2014-05-03 ver. 0.3.8
+
+* replace all instances of {filePath} instead of the only the first
+* add {filePathDecoded} to enable use of raw URL which isn't encoded
+
 ### 2014-04-27 ver. 0.3.7
 
 * DEPRECATED: Bower support, see readme.
