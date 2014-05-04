@@ -1,5 +1,3 @@
-####Working on Jade support
-
 # grunt-include-source
 
 > Include your sources into your HTML files automatically.
