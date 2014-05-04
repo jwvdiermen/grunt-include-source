@@ -39,7 +39,7 @@ module.exports = function(grunt) {
 	var parsers = {
 		'html': parseSource('HTML', /<!---?\s*include:\s+(.*)\s*-?--\s*>/gi),
 		'haml': parseSource('HAML', /-#\s+include:\s+(.*)/gi),
-		'jade': parseSource('JADE', /\/\/\s+include:\s+(.*)/gi),
+		'jade': parseSource('JADE', /\/\/-?\s+include:\s+(.*)/gi),
 		'scss': parseSource('SASS', /\/\/\s+include:\s+(.*)/gi),
 		'less': parseSource('LESS', /\/\/\s+include:\s+(.*)/gi)
 	};
