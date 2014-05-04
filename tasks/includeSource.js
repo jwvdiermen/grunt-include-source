@@ -203,12 +203,14 @@ module.exports = function(grunt) {
 				var files = resolveFiles(options.basePath, include.options);
 				orderFiles(files, include.options);
 	
-				var sep = os.EOL;
-				var i;
-				for (i = include.start + currentOffset - 1; i > 0 && (contents[i] === '\t' || contents[i] === ' '); --i);
-				if (i === 0 || contents[i] === '\r' || contents[i] === '\n') {
-					if (i > 0) ++i;
-					sep += contents.substr(i, include.start + currentOffset - i);
+				var sep = os.EOL,
+					lookFor = [ ' ', '\t', '\r', '\n' ],
+					i;
+
+				for (i = include.start + currentOffset - 1; i > 0 && lookFor.indexOf(contents[i]) >= 0; --i);
+				if (i > 0) {
+					++i;
+					sep = contents.substr(i, include.start + currentOffset - i);
 				}
 				
 				var	includeFragments = [];
