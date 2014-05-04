@@ -45,6 +45,11 @@ module.exports = function(grunt) {
 					'tmp/index.haml': 'test/files/index.haml'
 				}
 			},
+			jadeTest: {
+				files: {
+					'tmp/index.jade': 'test/files/index.jade'
+				}
+			},
 			lessTest: {
 				files: {
 					'tmp/main.less': 'test/files/main.less'
