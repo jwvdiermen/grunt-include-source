@@ -53,7 +53,7 @@ For example, setting `baseUrl` to `public/` will result in files being included 
 #### options.templates
 Type: `Object`
 
-The templates for sources included in `html`, `haml`, `scss`, `less` files. Definition of single template overrides its default equivalent only.
+The templates for sources included in `html`, `haml`, `jade`, `scss`, `less` files. Definition of single template overrides its default equivalent only.
 
 Example:
 ```js
@@ -69,6 +69,10 @@ includeSource: {
       haml: {
         js: '%script{src: "{filePath}"}/',
         css: '%link{href: "{filePath}", rel: "stylesheet"}/'
+      },      
+      jade: {
+        js: 'script(src="{filePath}", type="text/javascript")',    
+        css: 'link(href="{filePath}", rel="stylesheet", type="text/css")'
       },
       scss: {
         scss: '@import "{filePath}";',
@@ -91,7 +95,7 @@ includeSource: {
 As it was mentioned above, it is possible to override only necessary templates. 
 
 ### Include syntax
-Currently supported: `html`, `haml`, `scss` and `less`
+Currently supported: `html`, `haml`, `jade`, `scss` and `less`
 
 #### HTML syntax
 `<!-- include: options_go_here_as_json -->`
@@ -226,6 +230,11 @@ And the resulting file `index.html` will look something like:
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+
+### 2014-05-04 ver. 0.3.9
+
+* add support for Jade
+* make automatic indentation more intelligent by using EOL from context
 
 ### 2014-05-03 ver. 0.3.8
 
