@@ -65,7 +65,15 @@ module.exports = function(grunt) {
 		// Unit tests.
 		nodeunit: {
 			tests: ['test/*_test.js'],
-		}
+		},
+
+    lineending: {
+      options: {
+        eol: 'lf',
+        overwrite: true
+      },
+      files: ['test/expected/*.*', 'test/files/*.*']
+    }
 	});
 
 	// Actually load this plugin's task(s).
@@ -75,6 +83,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  grunt.loadNpmTasks('grunt-lineending');
 
 	// Whenever the "test" task is run, first clean the "tmp" dir, then run this
 	// plugin's task(s), then test the result.
