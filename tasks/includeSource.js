@@ -66,7 +66,8 @@ module.exports = function(grunt) {
     'html': findEndMarker('HTML', /<!---?\s*\/include\s+-?--\>/gi),
     'haml': findEndMarker('HAML', /-#\s+\/include/gi),
 	'jade': findEndMarker('JADE', /\/\/-?\s+\/include/gi),
-	'scss': findEndMarker('SASS', /\/\/\s+\/include/gi)
+	'scss': findEndMarker('SASS', /\/\/\s+\/include/gi),
+	'less': findEndMarker('LESS', /\/\/\s+\/include/gi)
   };
 
 	var templates = {
