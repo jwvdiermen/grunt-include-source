@@ -62,13 +62,13 @@ module.exports = function(grunt) {
 		'less': parseSource('LESS', /\/\/\s+include:\s+(.*)/gi)
 	};
 
-  var endMarkerParsers = {
-    'html': findEndMarker('HTML', /<!---?\s*\/include\s+-?--\>/gi),
-    'haml': findEndMarker('HAML', /-#\s+\/include/gi),
-	'jade': findEndMarker('JADE', /\/\/-?\s+\/include/gi),
-	'scss': findEndMarker('SASS', /\/\/\s+\/include/gi),
-	'less': findEndMarker('LESS', /\/\/\s+\/include/gi)
-  };
+	var endMarkerParsers = {
+		'html': findEndMarker('HTML', /<!---?\s*\/include\s+-?--\>/gi),
+		'haml': findEndMarker('HAML', /-#\s+\/include/gi),
+		'jade': findEndMarker('JADE', /\/\/-?\s+\/include/gi),
+		'scss': findEndMarker('SASS', /\/\/\s+\/include/gi),
+		'less': findEndMarker('LESS', /\/\/\s+\/include/gi)
+	};
 
 	var templates = {
 		'html':
