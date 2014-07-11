@@ -63,7 +63,7 @@ module.exports = function(grunt) {
 	};
 
   var endMarkerParsers = {
-    'html': findEndMarker('HTML', /<!---?\s\/include\s+-?--\>/)
+    'html': findEndMarker('HTML', /<!---?\s*\/include\s+-?--\>/gi)
   };
 
 	var templates = {
@@ -230,6 +230,7 @@ module.exports = function(grunt) {
 					lookFor = [ ' ', '\t', '\r', '\n' ],
 					i;
 
+				// Find separators to maintain indentation when including fragment
 				for (i = include.start + currentOffset - 1; i > 0 && lookFor.indexOf(contents[i]) >= 0; --i);
 				if (i > 0) {
 					++i;
@@ -264,8 +265,9 @@ module.exports = function(grunt) {
 				  replacementStart = include.start + currentOffset;
 				  replacementEnd = include.end + 1 + currentOffset;
 				} else {
-				  replacementStart = include.end + 1 + currentOffset;
+				  replacementStart = include.end + 1 + currentOffset + sep.length;
 				  replacementEnd = endMarker.start + currentOffset;
+				  includeFragment += sep;
 				}
 
 				contents =
