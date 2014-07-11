@@ -36,23 +36,23 @@ module.exports = function(grunt) {
 		};
 	};
 
-  // Generates function to find end marker, e.g. <!-- /include -->
-  var findEndMarker = function(name, pattern){
-    /*
-      source: Code between the current include and the next one. (Or the end of the file)
-      offset: Stat position of the source fragement inside the file.
-    */
-    return function(source, offset){
-      var endMarker = pattern.exec(source);
-      if (endMarker === null){
-        return null;
-      }
-      return {
-        start: endMarker.index + offset,
-        length: endMarker[0].length
-      };
-    };
-  };
+	// Generates function to find end marker, e.g. <!-- /include -->
+	var findEndMarker = function(name, pattern){
+		/*
+		  source: Code between the current include and the next one. (Or the end of the file)
+		  offset: Stat position of the source fragement inside the file.
+		*/
+		return function(source, offset){
+			var endMarker = pattern.exec(source);
+			if (endMarker === null){
+				return null;
+			}
+		  	return {
+				start: endMarker.index + offset,
+				length: endMarker[0].length
+		  	};
+		};
+	};
 
 	var parsers = {
 		'html': parseSource('HTML', /<!---?\s*include:\s+(.*)\s*-?--\s*>/gi),
@@ -208,7 +208,7 @@ module.exports = function(grunt) {
 			grunt.log.debug('File type is "' + fileType + '"');
 
 			var parserFn = parsers[fileType];
-      var findEndMarker = endMarkerParsers[fileType];
+			var findEndMarker = endMarkerParsers[fileType];
 
 			if (!parserFn) {
 				grunt.log.error('No parser found found file type "' + fileType + '".');
