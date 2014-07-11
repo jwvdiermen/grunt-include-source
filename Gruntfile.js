@@ -40,11 +40,11 @@ module.exports = function(grunt) {
 					'tmp/index.html': 'test/files/index.html'
 				}
 			},
-      overwriteTest: {
-        files: {
-          'tmp/overwrite.html': 'test/files/overwrite.html'
-        }
-      },
+		    overwriteTest: {
+				files: {
+					'tmp/overwrite.html': 'test/files/overwrite.html'
+				}
+		  	},
 			hamlTest: {
 				files: {
 					'tmp/index.haml': 'test/files/index.haml'
@@ -71,14 +71,14 @@ module.exports = function(grunt) {
 		nodeunit: {
 			tests: ['test/*_test.js'],
 		},
-
-    lineending: {
-      options: {
-        eol: 'lf',
-        overwrite: true
-      },
-      files: ['test/expected/*.*', 'test/files/*.*']
-    }
+		
+		lineending: {
+		  options: {
+			eol: 'lf',
+			overwrite: true
+		  },
+		  files: ['test/expected/*.*', 'test/files/*.*']
+		}
 	});
 
 	// Actually load this plugin's task(s).
