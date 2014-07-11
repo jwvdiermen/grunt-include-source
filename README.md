@@ -146,7 +146,22 @@ Default value: `undefined`
 Ordering method to be used when including files. Currently supported methods are:
 * `undefined` (default) - included files are sorted by their paths alphabetically in ascending order.
 * `'top-down'` - files from the parent directory will be included before files from subdirectories.
+
+#### Overwriting files
+
+To set the source file as the destination file use an `/include` comment:
+
+```html
+<!-- include: "type": "js", "files": "js/**/*.js" -->
+<script type="text/javascript" src="js/_first.js"></script>
+<script type="text/javascript" src="js/lib/dep1.js"></script>
+<!-- /include -->
+```
   
+When includeSource is run it will keep the include comments and only update the includes inside it.
+
+This works the same way for Less/Sass, by using `// /include`.
+
 ### Usage Examples
 Configure your task like this:
 
