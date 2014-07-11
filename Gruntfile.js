@@ -40,6 +40,11 @@ module.exports = function(grunt) {
 					'tmp/index.html': 'test/files/index.html'
 				}
 			},
+      overwriteTest: {
+        files: {
+          'tmp/overwrite.html': 'test/files/overwrite.html'
+        }
+      },
 			hamlTest: {
 				files: {
 					'tmp/index.haml': 'test/files/index.haml'
