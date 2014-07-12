@@ -184,60 +184,62 @@ grunt.initConfig({
 The file `index.tpl.html` could contain, for example:
 ```html
 <!doctype html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Index</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Index</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
 
-        <!-- 
-          Automatically include Bower components. Use the "sources" object in your bower.json
-          to specify which source files are which.
-        -->
-        <!-- include: "type": "css", "bower": "yourComponent" -->
-        
-        <!--
-          Include CSS files from a "tmp" directory, put there by another task.
-          This shows how to override the default "basePath" set in the options.
-        -->
-        <!-- include: "type": "css", "basePath": "tmp", "files": "styles/**/*.css" -->
-    </head>
-    <body>
-        <!-- include: "type": "js", "bower": "yourComponent" -->
-        <!-- include: "type": "js", "files": "scripts/**/*.js" -->
-    </body>
+    <!-- 
+      Automatically include Bower components. Use the "sources" object in your bower.json
+      to specify which source files are which.
+    -->
+    <!-- include: "type": "css", "bower": "yourComponent" -->
+
+    <!--
+      Include CSS files from a "tmp" directory, put there by another task.
+      This shows how to override the default "basePath" set in the options.
+    -->
+    <!-- include: "type": "css", "basePath": "tmp", "files": "styles/**/*.css" -->
+  </head>
+  <body>
+    <!-- include: "type": "js", "bower": "yourComponent" -->
+    <!-- include: "type": "js", "files": "scripts/**/*.js" -->
+  </body>
 </html>
 ```
 And the resulting file `index.html` will look something like:
 ```html
 <!doctype html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Index</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Index</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
 
-        <!-- 
-          Automatically include Bower components. Use the "sources" object in your bower.json
-          to specify which source files are which.
-        -->
-        <!-- include: "type": "css", "bower": "yourComponent" -->
+    <!-- 
+      Automatically include Bower components. Use the "sources" object in your bower.json
+      to specify which source files are which.
+    -->
+    <!-- include: "type": "css", "bower": "yourComponent" -->
         
-        <!--
-          Include CSS files from a "tmp" directory, put there by another task.
-          This shows how to override the default "basePath" set in the options.
-        -->
-        <link href="public/styles/main.css" rel="stylesheet" type="text/css" />
-        <link href="public/styles/anotherFile.css" rel="stylesheet" type="text/css" />
-    </head>
-    <body>
-        <script src="public/bower_components/yourComponent/main.js"></script>
-        <script src="public/scripts/app.js"></script>
-        <script src="public/scripts/anotherFile.js"></script>
-        <script src="public/scripts/controllers/evenMore.js"></script>
-    </body>
+    <!--
+      Include CSS files from a "tmp" directory, put there by another task.
+      This shows how to override the default "basePath" set in the options.
+    -->
+    <link href="public/styles/main.css" rel="stylesheet" type="text/css" />
+    <link href="public/styles/anotherFile.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <script src="public/bower_components/yourComponent/main.js"></script>
+    <script src="public/scripts/app.js"></script>
+    <script src="public/scripts/anotherFile.js"></script>
+    <script src="public/scripts/controllers/evenMore.js"></script>
+  </body>
 </html>
 ```
 
