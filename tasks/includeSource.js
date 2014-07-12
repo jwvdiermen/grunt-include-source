@@ -39,18 +39,18 @@ module.exports = function(grunt) {
 	// Generates function to find end marker, e.g. <!-- /include -->
 	var findEndMarker = function(name, pattern){
 		/*
-		  source: Code between the current include and the next one. (Or the end of the file)
-		  offset: Stat position of the source fragement inside the file.
+			source: Code between the current include and the next one. (Or the end of the file)
+			offset: Stat position of the source fragement inside the file.
 		*/
 		return function(source, offset){
 			var endMarker = pattern.exec(source);
 			if (endMarker === null){
 				return null;
 			}
-		  	return {
+			return {
 				start: endMarker.index + offset,
 				length: endMarker[0].length
-		  	};
+			};
 		};
 	};
 
@@ -78,12 +78,12 @@ module.exports = function(grunt) {
 		},
 		'haml':
 		{
-			'js': '%script{src: "{filePath}", type: "text/javascript"}',    
+			'js': '%script{src: "{filePath}", type: "text/javascript"}',
 			'css': '%link{href: "{filePath}", rel: "stylesheet", type: "text/css"}/'
 		},
 		'jade':
 		{
-			'js': 'script(src="{filePath}", type="text/javascript")',    
+			'js': 'script(src="{filePath}", type="text/javascript")',
 			'css': 'link(href="{filePath}", rel="stylesheet", type="text/css")'
 		},
 		'scss':
@@ -109,7 +109,7 @@ module.exports = function(grunt) {
 		if (includeOptions.bower) {
 			grunt.log.debug('Resolving files from Bower component "' + includeOptions.bower + '"...');
 
-			sourcePath =  path.join('bower_components', includeOptions.bower);
+			sourcePath = path.join('bower_components', includeOptions.bower);
 			basePath = path.join(basePath, sourcePath);
 			grunt.log.debug('Full path is "' + basePath + '".');
 
@@ -256,28 +256,28 @@ module.exports = function(grunt) {
 				// we want to replace the entire content between it and the include comment.
 				var endMarker = null;
 				if (findEndMarker){
-				  var nextInclude = includes[includeIndex + 1];
-				  var nextPartIndex = nextInclude ? nextInclude.start : contents.length;
-				  var between = contents.substring(include.start + currentOffset, nextPartIndex + currentOffset);
+					var nextInclude = includes[includeIndex + 1];
+					var nextPartIndex = nextInclude ? nextInclude.start : contents.length;
+					var between = contents.substring(include.start + currentOffset, nextPartIndex + currentOffset);
 
-				  endMarker = findEndMarker(between, include.start);
+					endMarker = findEndMarker(between, include.start);
 				}
 
 				var replacementStart;
 				var replacementEnd;
 				if (endMarker === null) {
-				  replacementStart = include.start + currentOffset;
-				  replacementEnd = include.end + 1 + currentOffset;
+					replacementStart = include.start + currentOffset;
+					replacementEnd = include.end + 1 + currentOffset;
 				} else {
-				  replacementStart = include.end + 1 + currentOffset + sep.length;
-				  replacementEnd = endMarker.start + currentOffset;
-				  includeFragment += sep;
+					replacementStart = include.end + 1 + currentOffset + sep.length;
+					replacementEnd = endMarker.start + currentOffset;
+					includeFragment += sep;
 				}
 
 				contents =
-				  contents.substr(0, replacementStart) +
-				  includeFragment +
-				  contents.substr(replacementEnd);
+					contents.substr(0, replacementStart) +
+					includeFragment +
+					contents.substr(replacementEnd);
 
 				var addedCharacters = includeFragment.length;
 				var removedCharacters = replacementEnd - replacementStart;
