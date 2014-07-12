@@ -63,11 +63,11 @@ module.exports = function(grunt) {
 	};
 
 	var endMarkerParsers = {
-		'html': findEndMarker('HTML', /<!---?\s*\/include\s+-?--\>/gi),
-		'haml': findEndMarker('HAML', /-#\s+\/include/gi),
-		'jade': findEndMarker('JADE', /\/\/-?\s+\/include/gi),
-		'scss': findEndMarker('SASS', /\/\/\s+\/include/gi),
-		'less': findEndMarker('LESS', /\/\/\s+\/include/gi)
+		'html': findEndMarker('HTML', /<!---?\s*\/include\s+-?--\>/i),
+		'haml': findEndMarker('HAML', /-#\s+\/include/i),
+		'jade': findEndMarker('JADE', /\/\/-?\s+\/include/i),
+		'scss': findEndMarker('SASS', /\/\/\s+\/include/i),
+		'less': findEndMarker('LESS', /\/\/\s+\/include/i)
 	};
 
 	var templates = {
