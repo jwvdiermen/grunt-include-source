@@ -235,7 +235,16 @@ module.exports = function(grunt) {
 					i;
 
 				// Find separators to maintain indentation when including fragment
-				for (i = include.start + currentOffset - 1; i > 0 && lookFor.indexOf(contents[i]) >= 0; --i);
+				for (i = include.start + currentOffset - 1; i > 0 && lookFor.indexOf(contents[i]) >= 0; --i){
+					// Don't allow multiple lines as separator
+					if (contents[i] === '\n'){
+						i--;
+						if (contents[i-1] === '\r'){
+							i--;
+						}
+						break;
+					}
+				}
 				if (i > 0) {
 					++i;
 					sep = contents.substr(i, include.start + currentOffset - i);
