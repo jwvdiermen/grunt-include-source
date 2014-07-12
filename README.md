@@ -248,6 +248,11 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+### 2014-07-12 ver. 0.4.0
+
+* add support to overwrite the source file by including an end tag
+* detect EOL globally from file when no indentation can be found (e.a. when at the begin of a file)
+
 ### 2014-05-04 ver. 0.3.9
 
 * add support for Jade
