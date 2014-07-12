@@ -248,6 +248,10 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+### 2014-07-12 ver. 0.4.1
+
+* bug fix: multiple lines are detected as the separator, but is should only look at the first line.
+
 ### 2014-07-12 ver. 0.4.0
 
 * add support to overwrite the source file by including an end tag
