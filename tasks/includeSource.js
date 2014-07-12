@@ -240,6 +240,12 @@ module.exports = function(grunt) {
 					++i;
 					sep = contents.substr(i, include.start + currentOffset - i);
 				}
+				else {
+					// So we probably are at the beginning of the file.
+					// Scan forward so we can atleast detect what line endings are being used.
+					// Keep it simple, if \r\n exists, use that, else just \n.
+					sep = /\r\n/g.test(contents) ? '\r\n' : '\n';
+				}
 				
 				var	includeFragments = [];
 				files.forEach(function(file) {
