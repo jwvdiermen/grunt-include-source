@@ -36,12 +36,38 @@ module.exports = function(grunt) {
 		};
 	};
 
+	// Generates function to find end marker, e.g. <!-- /include -->
+	var findEndMarker = function(name, pattern){
+		/*
+		  source: Code between the current include and the next one. (Or the end of the file)
+		  offset: Stat position of the source fragement inside the file.
+		*/
+		return function(source, offset){
+			var endMarker = pattern.exec(source);
+			if (endMarker === null){
+				return null;
+			}
+		  	return {
+				start: endMarker.index + offset,
+				length: endMarker[0].length
+		  	};
+		};
+	};
+
 	var parsers = {
 		'html': parseSource('HTML', /<!---?\s*include:\s+(.*)\s*-?--\s*>/gi),
 		'haml': parseSource('HAML', /-#\s+include:\s+(.*)/gi),
 		'jade': parseSource('JADE', /\/\/-?\s+include:\s+(.*)/gi),
 		'scss': parseSource('SASS', /\/\/\s+include:\s+(.*)/gi),
 		'less': parseSource('LESS', /\/\/\s+include:\s+(.*)/gi)
+	};
+
+	var endMarkerParsers = {
+		'html': findEndMarker('HTML', /<!---?\s*\/include\s+-?--\>/gi),
+		'haml': findEndMarker('HAML', /-#\s+\/include/gi),
+		'jade': findEndMarker('JADE', /\/\/-?\s+\/include/gi),
+		'scss': findEndMarker('SASS', /\/\/\s+\/include/gi),
+		'less': findEndMarker('LESS', /\/\/\s+\/include/gi)
 	};
 
 	var templates = {
@@ -182,6 +208,7 @@ module.exports = function(grunt) {
 			grunt.log.debug('File type is "' + fileType + '"');
 
 			var parserFn = parsers[fileType];
+			var findEndMarker = endMarkerParsers[fileType];
 
 			if (!parserFn) {
 				grunt.log.error('No parser found found file type "' + fileType + '".');
@@ -199,7 +226,7 @@ module.exports = function(grunt) {
 
 			grunt.log.debug('Found ' + includes.length + ' include statement(s).');
 
-			includes.forEach(function(include) {
+			includes.forEach(function(include, includeIndex) {
 				var files = resolveFiles(options.basePath, include.options);
 				orderFiles(files, include.options);
 	
@@ -207,6 +234,7 @@ module.exports = function(grunt) {
 					lookFor = [ ' ', '\t', '\r', '\n' ],
 					i;
 
+				// Find separators to maintain indentation when including fragment
 				for (i = include.start + currentOffset - 1; i > 0 && lookFor.indexOf(contents[i]) >= 0; --i);
 				if (i > 0) {
 					++i;
@@ -224,13 +252,36 @@ module.exports = function(grunt) {
 
 				var includeFragment = includeFragments.join(sep);
 
-				contents =
-					contents.substr(0, include.start + currentOffset) +
-					includeFragment +
-					contents.substr(include.end + 1 + currentOffset);
+				// If there is an end marker before the next include or the end of the file
+				// we want to replace the entire content between it and the include comment.
+				var endMarker = null;
+				if (findEndMarker){
+				  var nextInclude = includes[includeIndex + 1];
+				  var nextPartIndex = nextInclude ? nextInclude.start : contents.length;
+				  var between = contents.substring(include.start + currentOffset, nextPartIndex + currentOffset);
 
-				var originalLength = include.end - include.start + 1;
-				currentOffset += includeFragment.length - originalLength;
+				  endMarker = findEndMarker(between, include.start);
+				}
+
+				var replacementStart;
+				var replacementEnd;
+				if (endMarker === null) {
+				  replacementStart = include.start + currentOffset;
+				  replacementEnd = include.end + 1 + currentOffset;
+				} else {
+				  replacementStart = include.end + 1 + currentOffset + sep.length;
+				  replacementEnd = endMarker.start + currentOffset;
+				  includeFragment += sep;
+				}
+
+				contents =
+				  contents.substr(0, replacementStart) +
+				  includeFragment +
+				  contents.substr(replacementEnd);
+
+				var addedCharacters = includeFragment.length;
+				var removedCharacters = replacementEnd - replacementStart;
+				currentOffset += addedCharacters - removedCharacters;
 			});
 
 			grunt.log.debug('Writing output...');

@@ -19,7 +19,15 @@
 		<script type="text/javascript" src="js/lib/dep1.js"></script>
 		<script type="text/javascript" src="js/lib/dep2.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
-
+		
+		<!-- Include javascript sources, but keep the include comment marker -->
+		<!-- include: "type": "js", "files": "js/**/*.js" -->
+		<script type="text/javascript" src="js/_first.js"></script>
+		<script type="text/javascript" src="js/lib/dep1.js"></script>
+		<script type="text/javascript" src="js/lib/dep2.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		<!-- /include -->
+		
 		<!-- Include javascript sources, but using a different ordering -->
 		<script type="text/javascript" src="js/_first.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>

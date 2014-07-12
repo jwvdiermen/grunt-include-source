@@ -40,6 +40,11 @@ module.exports = function(grunt) {
 					'tmp/index.html': 'test/files/index.html'
 				}
 			},
+			overwriteTest: {
+				files: {
+					'tmp/overwrite.html': 'test/files/overwrite.html'
+				}
+			},
 			hamlTest: {
 				files: {
 					'tmp/index.haml': 'test/files/index.haml'
@@ -65,6 +70,14 @@ module.exports = function(grunt) {
 		// Unit tests.
 		nodeunit: {
 			tests: ['test/*_test.js'],
+		},
+		
+		lineending: {
+			options: {
+				eol: 'lf',
+				overwrite: true
+			},
+			files: ['test/expected/*.*', 'test/files/*.*']
 		}
 	});
 
@@ -75,6 +88,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  	grunt.loadNpmTasks('grunt-lineending');
 
 	// Whenever the "test" task is run, first clean the "tmp" dir, then run this
 	// plugin's task(s), then test the result.
