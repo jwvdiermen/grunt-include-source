@@ -28,41 +28,51 @@ module.exports = function(grunt) {
 			tests: ['tmp'],
 		},
 
+		// Variables to be used in templates.
+		vars: {
+			hello: 'world',
+			testFilesPath: 'test/files',
+			cssPath: 'css',
+			lessPath: 'less',
+			scssPath: 'scss',
+			jsPath: 'js'
+		},
+
 		// Configuration to be run (and then tested).
 		// For testing, we simply execute some tasks and validate the output.
 		includeSource: {
 			options: {
-				basePath: 'test/files',
+				basePath: '<%= vars.testFilesPath %>',
 				baseUrl: ''
 			},
 			htmlTest: {
 				files: {
-					'tmp/index.html': 'test/files/index.html'
+					'tmp/index.html': '<%= vars.testFilesPath %>/index.html'
 				}
 			},
 			overwriteTest: {
 				files: {
-					'tmp/overwrite.html': 'test/files/overwrite.html'
+					'tmp/overwrite.html': '<%= vars.testFilesPath %>/overwrite.html'
 				}
 			},
 			hamlTest: {
 				files: {
-					'tmp/index.haml': 'test/files/index.haml'
+					'tmp/index.haml': '<%= vars.testFilesPath %>/index.haml'
 				}
 			},
 			jadeTest: {
 				files: {
-					'tmp/index.jade': 'test/files/index.jade'
+					'tmp/index.jade': '<%= vars.testFilesPath %>/index.jade'
 				}
 			},
 			lessTest: {
 				files: {
-					'tmp/main.less': 'test/files/main.less'
+					'tmp/main.less': '<%= vars.testFilesPath %>/main.less'
 				}
 			},
 			scssTest: {
 				files: {
-					'tmp/main.scss': 'test/files/main.scss'
+					'tmp/main.scss': '<%= vars.testFilesPath %>/main.scss'
 				}
 			}
 		},

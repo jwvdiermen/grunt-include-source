@@ -117,7 +117,12 @@ module.exports = function(grunt) {
 			files = sources[includeOptions.type];
 		} else {
 			grunt.log.debug('Resolving files from include property...');
+
+			// Retrieve files property. If it's a string, process it as a template.
 			files = includeOptions.files;
+			if (typeof files == 'string') {
+				files = grunt.template.process(files);
+			}
 		}
 
 		if (!files) {
