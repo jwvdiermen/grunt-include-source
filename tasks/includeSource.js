@@ -73,17 +73,17 @@ module.exports = function(grunt) {
 	var templates = {
 		'html':
 		{
-			'js': '<script type="text/javascript" src="{filePath}"></script>',
+			'js': '<script src="{filePath}"></script>',
 			'css': '<link href="{filePath}" rel="stylesheet" type="text/css">'
 		},
 		'haml':
 		{
-			'js': '%script{src: "{filePath}", type: "text/javascript"}',
+			'js': '%script{src: "{filePath}"}',
 			'css': '%link{href: "{filePath}", rel: "stylesheet", type: "text/css"}/'
 		},
 		'jade':
 		{
-			'js': 'script(src="{filePath}", type="text/javascript")',
+			'js': 'script(src="{filePath}")',
 			'css': 'link(href="{filePath}", rel="stylesheet", type="text/css")'
 		},
 		'scss':

@@ -15,21 +15,21 @@
 	
 	%body
 		-# Include javascript sources
-		%script{src: "js/_first.js", type: "text/javascript"}
-		%script{src: "js/lib/dep1.js", type: "text/javascript"}
-		%script{src: "js/lib/dep2.js", type: "text/javascript"}
-		%script{src: "js/main.js", type: "text/javascript"}
+		%script{src: "js/_first.js"}
+		%script{src: "js/lib/dep1.js"}
+		%script{src: "js/lib/dep2.js"}
+		%script{src: "js/main.js"}
 		
 		-# Include javascript sources, but keep the include comment marker
 		-# include: "type": "js", "files": "js/**/*.js"
-		%script{src: "js/_first.js", type: "text/javascript"}
-		%script{src: "js/lib/dep1.js", type: "text/javascript"}
-		%script{src: "js/lib/dep2.js", type: "text/javascript"}
-		%script{src: "js/main.js", type: "text/javascript"}
+		%script{src: "js/_first.js"}
+		%script{src: "js/lib/dep1.js"}
+		%script{src: "js/lib/dep2.js"}
+		%script{src: "js/main.js"}
 		-# /include
 
 		-# Include javascript sources, but using a different ordering
-		%script{src: "js/_first.js", type: "text/javascript"}
-		%script{src: "js/main.js", type: "text/javascript"}
-		%script{src: "js/lib/dep1.js", type: "text/javascript"}
-		%script{src: "js/lib/dep2.js", type: "text/javascript"}
+		%script{src: "js/_first.js"}
+		%script{src: "js/main.js"}
+		%script{src: "js/lib/dep1.js"}
+		%script{src: "js/lib/dep2.js"}
