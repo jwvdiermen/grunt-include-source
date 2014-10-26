@@ -120,7 +120,7 @@ module.exports = function(grunt) {
 
 			// Retrieve files property. If it's a string, process it as a template.
 			files = includeOptions.files;
-			if (typeof files == 'string') {
+			if (typeof files === 'string') {
 				files = grunt.template.process(files);
 			}
 		}
