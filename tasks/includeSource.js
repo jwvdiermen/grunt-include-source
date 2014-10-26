@@ -194,7 +194,8 @@ module.exports = function(grunt) {
 			grunt.log.debug('Handling output file "' + file.dest + "'...");
 
 			// Concatenate the source files.
-			var contents = file.src.filter(function(filePath) {
+			var contents = '';
+			var contentSources = file.src.filter(function(filePath) {
 					grunt.log.debug('Using input file "' + filePath + '".');
 					// Remove nonexistent files.
 					if (!grunt.file.exists(filePath)) {
@@ -206,7 +207,21 @@ module.exports = function(grunt) {
 				}).map(	function(filePath) {
 					// Read and return the file's source.
 					return grunt.file.read(filePath);
-				}).join('\n');
+				});
+
+			// Don't bother detecting newline if we have no more than 1 file.
+			if (contentSources.length > 1) {
+				// Detect the newline to use for the content files.
+				// Use the first file to detect the newlines, no use to test all of them.
+				var contentNewline = /\r\n/g.test(contentSources[0]) ? '\r\n' : '\n';
+
+				// Join the content files as one to be processed.
+				contents = contentSources.join(contentNewline);
+			}
+			else {
+				// Still use join here, since 'contentSources' could have a length of 0?
+				contents = contentSources.join();
+			}
 
 			// Parse the contents, using a parser based on the target file.
 			var fileType = path.extname(file.dest).substr(1);
