@@ -248,6 +248,12 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+### 2014-10-26 ver. 0.4.2
+
+* bug fix: line endings are not detected when concatenating multiple source files.
+* remove redundant "type" attribute in <script> tag
+* add support for templates in file pattern
+
 ### 2014-07-12 ver. 0.4.1
 
 * bug fix: multiple lines are detected as the separator, but is should only look at the first line.
