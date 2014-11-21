@@ -35,7 +35,12 @@ module.exports = function(grunt) {
 			cssPath: 'css',
 			lessPath: 'less',
 			scssPath: 'scss',
-			jsPath: 'js'
+			jsPath: 'js',
+			jsArray: [
+				'js/_first.js',
+				'js/lib/**/*.js',
+				'js/main.js',
+			]
 		},
 
 		// Configuration to be run (and then tested).
