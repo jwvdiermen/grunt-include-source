@@ -248,6 +248,10 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+### 2014-11-22 ver. 0.4.4
+
+* improve endline detected when scanning for indentation
+
 ### 2014-11-22 ver. 0.4.3
 
 * replace `grunt.template.process` with `grunt.config.process` for better support (see https://github.com/jwvdiermen/grunt-include-source/pull/27)
