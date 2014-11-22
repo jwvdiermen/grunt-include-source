@@ -254,17 +254,18 @@ module.exports = function(grunt) {
 
 				// Find separators to maintain indentation when including fragment
 				for (i = include.start + currentOffset - 1; i > 0 && lookFor.indexOf(contents[i]) >= 0; --i){
-					// Don't allow multiple lines as separator
+					// Don't allow multiple lines as separator, so break when we found one
 					if (contents[i] === '\n'){
 						i--;
-						if (contents[i-1] === '\r'){
+						// Skip an extra character in case the endline is \r\n instead of just \n
+						if (contents[i] === '\r'){
 							i--;
 						}
 						break;
 					}
 				}
 				if (i > 0) {
-					++i;
+					++i; // Increment by one, since the index we found is the first non-indentation character.
 					sep = contents.substr(i, include.start + currentOffset - i);
 				}
 				else {
