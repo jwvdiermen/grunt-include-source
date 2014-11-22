@@ -248,6 +248,10 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+### 2014-11-22 ver. 0.4.3
+
+* replace `grunt.template.process` with `grunt.config.process` for better support (see https://github.com/jwvdiermen/grunt-include-source/pull/27)
+
 ### 2014-10-26 ver. 0.4.2
 
 * bug fix: line endings are not detected when concatenating multiple source files.
