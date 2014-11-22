@@ -39,7 +39,7 @@ module.exports = function(grunt) {
 			jsArray: [
 				'js/_first.js',
 				'js/lib/**/*.js',
-				'js/main.js',
+				'<%= vars.jsPath %>/main.js',
 			]
 		},
 
