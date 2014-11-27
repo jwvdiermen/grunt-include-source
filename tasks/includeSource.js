@@ -98,10 +98,8 @@ module.exports = function(grunt) {
 		}
 	};
 
-	var resolveFiles = function (basePath, includeOptions) {
-		if (includeOptions.basePath) {
-			basePath = includeOptions.basePath;
-		}
+	var resolveFiles = function (options, includeOptions) {
+		var basePath = includeOptions.basePath || options.basePath;
 		grunt.log.debug('Resolving files on base path "' + basePath + '"...');
 		grunt.log.debug('Include options: ' + util.inspect(includeOptions));
 
@@ -129,11 +127,11 @@ module.exports = function(grunt) {
 		}
 
 		grunt.log.debug('Expanding files: ' + util.inspect(files));
-		var expandedFiles = grunt.file.expand({ cwd: basePath }, files);
+		var expandedFiles = grunt.file.expandMapping(files, sourcePath, { cwd: basePath, rename: options.rename, flatten: options.flatten });
 
 		var results = [];
 		for (var i = 0; i < expandedFiles.length; ++i) {
-			var file = path.join(sourcePath, expandedFiles[i]).replace(/\\/g, '/');
+			var file = expandedFiles[i].dest.replace(/\\/g, '/');
 			grunt.log.debug('Found file "' + file + '".');
 			results.push(file);
 		}
@@ -245,7 +243,7 @@ module.exports = function(grunt) {
 			grunt.log.debug('Found ' + includes.length + ' include statement(s).');
 
 			includes.forEach(function(include, includeIndex) {
-				var files = resolveFiles(options.basePath, include.options);
+				var files = resolveFiles(options, include.options);
 				orderFiles(files, include.options);
 	
 				var sep = os.EOL,
