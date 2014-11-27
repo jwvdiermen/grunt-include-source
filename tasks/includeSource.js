@@ -127,7 +127,7 @@ module.exports = function(grunt) {
 		}
 
 		grunt.log.debug('Expanding files: ' + util.inspect(files));
-		var expandedFiles = grunt.file.expandMapping(files, sourcePath, { cwd: basePath, rename: options.rename });
+		var expandedFiles = grunt.file.expandMapping(files, sourcePath, { cwd: basePath, rename: options.rename, flatten: options.flatten });
 
 		var results = [];
 		for (var i = 0; i < expandedFiles.length; ++i) {
