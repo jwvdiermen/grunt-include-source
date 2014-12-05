@@ -32,6 +32,10 @@ module.exports = function(grunt) {
 		vars: {
 			hello: 'world',
 			testFilesPath: 'test/files',
+			multipleBasePath: [
+				'<%= vars.testFilesPath %>',
+				'test/multiple-paths'
+			],
 			cssPath: 'css',
 			lessPath: 'less',
 			scssPath: 'scss',
