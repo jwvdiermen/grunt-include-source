@@ -38,10 +38,11 @@ grunt.initConfig({
 ### Options
 
 #### options.basePath
-Type: `String`
+Type: `String` or `Array[String]`
 Default value: `''`
 
-The base path to use when expanding files.
+The base path to use when expanding files. 
+Can be an array to support expanding files from multiple paths.
 
 #### options.baseUrl
 Type: `String`
