@@ -105,6 +105,8 @@ module.exports = function(grunt) {
 		grunt.log.debug('Resolving files on base path "' + basePath + '"...');
 		grunt.log.debug('Include options: ' + util.inspect(includeOptions));
 
+		basePath = grunt.config.process(basePath);
+
 		var files, sourcePath = '';
 		if (includeOptions.bower) {
 			grunt.log.debug('Resolving files from Bower component "' + includeOptions.bower + '"...');
@@ -129,10 +131,20 @@ module.exports = function(grunt) {
 		}
 
 		grunt.log.debug('Expanding files: ' + util.inspect(files));
-		var expandedFiles = grunt.file.expand({ cwd: basePath }, files);
+		var expandedFiles, i;
+		var expand = function(x, f) { return grunt.file.expand({cwd: x}, f) };
+		if (basePath instanceof Array) {
+			expandedFiles = [];
+			for (i = 0 ; i < basePath.length; ++i) {
+				grunt.log.debug('Expanding files at: ' + basePath[i]);
+				expandedFiles = expandedFiles.concat(expand(basePath[i], files));
+			}
+		} else {
+			expandedFiles = expand(basePath, files);
+		}
 
 		var results = [];
-		for (var i = 0; i < expandedFiles.length; ++i) {
+		for (i = 0; i < expandedFiles.length; ++i) {
 			var file = path.join(sourcePath, expandedFiles[i]).replace(/\\/g, '/');
 			grunt.log.debug('Found file "' + file + '".');
 			results.push(file);
