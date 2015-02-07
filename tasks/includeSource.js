@@ -56,6 +56,7 @@ module.exports = function(grunt) {
 
 	var parsers = {
 		'html': parseSource('HTML', /<!---?\s*include:\s+(.*)\s*-?--\s*>/gi),
+		'cshtml': parseSource('CSHTML', /<!---?\s*include:\s+(.*)\s*-?--\s*>/gi),
 		'haml': parseSource('HAML', /-#\s+include:\s+(.*)/gi),
 		'jade': parseSource('JADE', /\/\/-?\s+include:\s+(.*)/gi),
 		'scss': parseSource('SASS', /\/\/\s+include:\s+(.*)/gi),
@@ -64,6 +65,7 @@ module.exports = function(grunt) {
 
 	var endMarkerParsers = {
 		'html': findEndMarker('HTML', /<!---?\s*\/include\s+-?--\>/i),
+		'cshtml': findEndMarker('CSHTML', /<!---?\s*\/include\s+-?--\>/i),
 		'haml': findEndMarker('HAML', /-#\s+\/include/i),
 		'jade': findEndMarker('JADE', /\/\/-?\s+\/include/i),
 		'scss': findEndMarker('SASS', /\/\/\s+\/include/i),
@@ -72,6 +74,11 @@ module.exports = function(grunt) {
 
 	var templates = {
 		'html':
+		{
+			'js': '<script src="{filePath}"></script>',
+			'css': '<link href="{filePath}" rel="stylesheet" type="text/css">'
+		},
+		'cshtml':
 		{
 			'js': '<script src="{filePath}"></script>',
 			'css': '<link href="{filePath}" rel="stylesheet" type="text/css">'
