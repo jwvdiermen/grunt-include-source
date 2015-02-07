@@ -83,6 +83,11 @@ module.exports = function(grunt) {
 				files: {
 					'tmp/main.scss': '<%= vars.testFilesPath %>/main.scss'
 				}
+			},
+			cshtmlTest: {
+				files: {
+					'tmp/index.cshtml': '<%= vars.testFilesPath %>/index.cshtml'
+				}
 			}
 		},
 
