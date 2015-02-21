@@ -58,16 +58,14 @@ module.exports = function(grunt) {
 		'html': parseSource('HTML', /<!---?\s*include:\s+(.*)\s*-?--\s*>/gi),
 		'haml': parseSource('HAML', /-#\s+include:\s+(.*)/gi),
 		'jade': parseSource('JADE', /\/\/-?\s+include:\s+(.*)/gi),
-		'scss': parseSource('SASS', /\/\/\s+include:\s+(.*)/gi),
-		'less': parseSource('LESS', /\/\/\s+include:\s+(.*)/gi)
+		'scss': parseSource('SASS', /\/\/\s+include:\s+(.*)/gi)
 	};
 
 	var endMarkerParsers = {
 		'html': findEndMarker('HTML', /<!---?\s*\/include\s+-?--\>/i),
 		'haml': findEndMarker('HAML', /-#\s+\/include/i),
 		'jade': findEndMarker('JADE', /\/\/-?\s+\/include/i),
-		'scss': findEndMarker('SASS', /\/\/\s+\/include/i),
-		'less': findEndMarker('LESS', /\/\/\s+\/include/i)
+		'scss': findEndMarker('SASS', /\/\/\s+\/include/i)
 	};
 
 	var templates = {
@@ -90,12 +88,12 @@ module.exports = function(grunt) {
 		{
 			'scss': '@import "{filePath}";',
 			'css': '@import "{filePath}";'
-		},
-		'less':
-		{
-			'less': '@import "{filePath}";',
-			'css': '@import "{filePath}";'
 		}
+	};
+
+	var defaultTypeMappings = {
+		'cshtml': 'html',
+		'less': 'scss'
 	};
 
 	var resolveFiles = function (basePath, includeOptions) {
@@ -194,8 +192,12 @@ module.exports = function(grunt) {
 		var options = this.options({
 			basePath: '',
 			baseUrl: '',
-			templates: {}
+			templates: {},
+			typeMappings: {}
 		});
+
+		var typeMappings = extendr.clone(defaultTypeMappings);
+		extendr.extend(typeMappings, options.typeMappings);
 
 		grunt.log.debug('Base path is "' + options.basePath + '".');
 
@@ -236,6 +238,13 @@ module.exports = function(grunt) {
 			// Parse the contents, using a parser based on the target file.
 			var fileType = path.extname(file.dest).substr(1);
 			grunt.log.debug('File type is "' + fileType + '"');
+
+			// Try and map the file type, using it instead.
+			var mappedFileType = typeMappings[fileType];
+			if (mappedFileType) {
+				grunt.log.debug('File type "' + fileType + '" maps to "' + mappedFileType + '"');
+				fileType = mappedFileType;
+			}
 
 			var parserFn = parsers[fileType];
 			var findEndMarker = endMarkerParsers[fileType];
@@ -290,7 +299,16 @@ module.exports = function(grunt) {
 				var	includeFragments = [];
 				files.forEach(function(file) {
 					grunt.log.debug('Including file "' + file + '".');
-					includeFragments.push(typeTemplates[include.options.type]
+
+					// Map the include type.
+					var includeType = include.options.type;
+					var mappedIncludeType = typeMappings[includeType];
+					if (mappedIncludeType) {
+						grunt.log.debug('Include type "' + includeType + '" maps to "' + mappedIncludeType + '"');
+						includeType = mappedIncludeType;
+					}
+
+					includeFragments.push(typeTemplates[includeType]
 						.replace(/\{filePath\}/g, url.resolve(include.options.baseUrl || options.baseUrl, file))
 						.replace(/\{filePathDecoded\}/g, decodeURI(url.resolve(include.options.baseUrl || options.baseUrl, file)))
 					);

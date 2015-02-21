@@ -64,6 +64,11 @@ module.exports = function(grunt) {
 					'tmp/overwrite.html': '<%= vars.testFilesPath %>/overwrite.html'
 				}
 			},
+			cshtmlTest: {
+				files: {
+					'tmp/index.cshtml': '<%= vars.testFilesPath %>/index.cshtml'
+				}
+			},
 			hamlTest: {
 				files: {
 					'tmp/index.haml': '<%= vars.testFilesPath %>/index.haml'

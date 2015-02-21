@@ -95,10 +95,28 @@ includeSource: {
 
 As it was mentioned above, it is possible to override only necessary templates. 
 
+#### options.typeMappings
+Type: `Object`
+
+Map types that are not supported but have the same syntax as an existing type. For example:
+```js
+
+includeSource: {
+  options: {
+    typeMappings: {
+      // CSHTML files uses the same syntax as HTML files.
+      'cshtml': 'html',
+      // LESS files use the same syntax as SCSS files.
+      'less': 'scss'
+    }
+  }
+}
+```
+
 ### Include syntax
 Currently supported: `html`, `haml`, `jade`, `scss` and `less`
 
-#### HTML syntax
+#### HTML and CSHTML syntax
 `<!-- include: options_go_here_as_json -->`
 
 #### SCSS and LESS syntax
