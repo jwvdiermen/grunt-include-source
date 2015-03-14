@@ -44,7 +44,8 @@ module.exports = function(grunt) {
 				'js/_first.js',
 				'js/lib/**/*.js',
 				'<%= vars.jsPath %>/main.js',
-			]
+			],
+			tsPath: 'ts'
 		},
 
 		// Configuration to be run (and then tested).
@@ -87,6 +88,11 @@ module.exports = function(grunt) {
 			scssTest: {
 				files: {
 					'tmp/main.scss': '<%= vars.testFilesPath %>/main.scss'
+				}
+			},
+			tsTest: {
+				files: {
+					'tmp/references.ts': '<%= vars.testFilesPath %>/references.ts'
 				}
 			}
 		},

@@ -54,7 +54,7 @@ For example, setting `baseUrl` to `public/` will result in files being included 
 #### options.templates
 Type: `Object`
 
-The templates for sources included in `html`, `haml`, `jade`, `scss`, `less` files. Definition of single template overrides its default equivalent only.
+The templates for sources included in `html`, `haml`, `jade`, `scss`, `less`, `ts` files. Definition of single template overrides its default equivalent only.
 
 Example:
 ```js
@@ -82,6 +82,9 @@ includeSource: {
       less: {
         less: '@import "{filePath}";',
         css: '@import "{filePath}";',
+      },
+      ts: {
+        ts: '/// <reference path="{filePath}" />'
       }
     }
   },
@@ -114,13 +117,16 @@ includeSource: {
 ```
 
 ### Include syntax
-Currently supported: `html`, `haml`, `jade`, `scss` and `less`
+Currently supported: `html`, `haml`, `jade`, `scss`, `less` and `ts` (TypeScript).
 
 #### HTML and CSHTML syntax
 `<!-- include: options_go_here_as_json -->`
 
 #### SCSS and LESS syntax
 `// include: options_go_here_as_json`
+
+#### TS syntax
+`/// <!-- include: options_go_here_as_json -->`
 
 #### include.type
 The type of files that are being included.
