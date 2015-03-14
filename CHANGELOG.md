@@ -4,6 +4,10 @@ Here you can find the changes made over the course of history in the different r
 
 ## Release History
 
+### 2015-02-21 ver. 0.5.1
+
+* Add TypeScript support.
+
 ### 2015-02-21 ver. 0.5.0
 
 * Add support to map types to existing supported types
