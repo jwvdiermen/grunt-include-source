@@ -106,7 +106,7 @@ If specified, this function will be responsible for returning the final dest fil
   }
  ```
 
-### options.flatten
+#### options.flatten
 Type: 'Boolean'
 Default value: 'false'
 Remove the path component from all matched src files. The src file path is still joined to the specified dest.
