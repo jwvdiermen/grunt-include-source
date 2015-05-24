@@ -177,7 +177,7 @@ Example:
 ```
 
 #### include.files
-Include the given files. Files are passed through the `grunt.file.expand` method.
+Include the given files. Files are passed through the `grunt.file.expandMapping` method (see `include.rename` and `include.flatten` options).
 
 #### include.basePath
 Set to override the `basePath` set in the options.
