@@ -61,6 +61,12 @@
 
 		<!-- Include javascript sources, using an array of strings that also contains variables -->
 		<!-- include: "type": "js", "files": ["js/_first.js","js/lib/**/*.js","<%= vars.jsPath %>/main.js"], "basePath":  "<%= vars.multipleBasePath %>" -->
+		
+		<!-- Include all javascript sources from exclude folder -->
+		<!-- include: "type": "js", "files": "<%= vars.jsExcludePath %>/**/*.js" -->
+		
+		<!-- Include all javascript sources from exclude folder, expect the "no-include" folder -->
+		<!-- include: "type": "js", "files": "<%= vars.jsExcludePath %>/**/*.js,!**/no-include/*.js" -->
 
 	</body>
 </html>

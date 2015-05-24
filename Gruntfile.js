@@ -40,6 +40,7 @@ module.exports = function(grunt) {
 			lessPath: 'less',
 			scssPath: 'scss',
 			jsPath: 'js',
+			jsExcludePath: 'js-exclude',
 			jsArray: [
 				'js/_first.js',
 				'js/lib/**/*.js',

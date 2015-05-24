@@ -116,6 +116,21 @@
 		<script src="js/lib/dep1.js"></script>
 		<script src="js/lib/dep2.js"></script>
 		<script src="js/main.js"></script>
+		
+		<!-- Include all javascript sources from exclude folder -->
+		<script src="js-exclude/_first.js"></script>
+		<script src="js-exclude/lib/dep1.js"></script>
+		<script src="js-exclude/lib/dep2.js"></script>
+		<script src="js-exclude/main.js"></script>
+		<script src="js-exclude/no-include/no-include.js"></script>
+		<script src="resources/common.js"></script>
+		
+		<!-- Include all javascript sources from exclude folder, expect the "no-include" folder -->
+		<script src="js-exclude/_first.js"></script>
+		<script src="js-exclude/lib/dep1.js"></script>
+		<script src="js-exclude/lib/dep2.js"></script>
+		<script src="js-exclude/main.js"></script>
+		<script src="resources/common.js"></script>
 
 	</body>
 </html>
