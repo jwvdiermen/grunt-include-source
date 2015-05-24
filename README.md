@@ -116,6 +116,27 @@ includeSource: {
 }
 ```
 
+#### options.rename
+Type: `function`
+
+A way of returning a custom filepath.
+
+See [grunt.file.expandMapping](http://gruntjs.com/api/grunt.file#grunt.file.expandmapping).
+If specified, this function will be responsible for returning the final dest filepath. By default, it joins dest and matchedSrcPath like so:
+```js
+  rename: function(dest, matchedSrcPath, options) {
+    return path.join(dest, matchedSrcPath);
+  }
+ ```
+
+#### options.flatten
+Type: `Boolean`
+Default value: `false`
+
+Remove the path component from all matched src files. The src file path is still joined to the specified dest.
+
+[grunt.file.expandMapping.flatten](http://gruntjs.com/api/grunt.file#grunt.file.expandmapping).
+
 ### Include syntax
 Currently supported: `html`, `haml`, `jade`, `scss`, `less` and `ts` (TypeScript).
 
