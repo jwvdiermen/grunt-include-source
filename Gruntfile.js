@@ -53,7 +53,19 @@ module.exports = function(grunt) {
 		includeSource: {
 			options: {
 				basePath: '<%= vars.testFilesPath %>',
-				baseUrl: ''
+				baseUrl: '',
+				rename: function(dest, srcPath) {
+					if(srcPath.indexOf('src/main/webapp') > -1) {
+						var index = 0;
+						for(var i = 0; i < 4; i++) {
+							index = srcPath.indexOf('/', index ? index : 0);
+							index++;
+						}
+						var newPath = srcPath.substr(index);
+						return newPath;
+					} else
+						return srcPath;
+				}
 			},
 			htmlTest: {
 				files: {
