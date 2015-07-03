@@ -210,6 +210,7 @@ module.exports = function(grunt) {
 			templates: {},
 			typeMappings: {}
 		});
+		options.target = this.target;
 
 		var typeMappings = extendr.clone(defaultTypeMappings);
 		extendr.extend(typeMappings, options.typeMappings);
@@ -281,7 +282,12 @@ module.exports = function(grunt) {
 			grunt.log.debug('Found ' + includes.length + ' include statement(s).');
 
 			includes.forEach(function(include, includeIndex) {
-				var files = resolveFiles(options, include.options);
+				var files = [];
+				if (options.target !== include.options.target) {
+					grunt.log.debug('Include target is "' + include.options.target + '" and task target is "' + options.target + '", skipping include.');
+				} else {
+					files = resolveFiles(options, include.options);
+				}
 				orderFiles(files, include.options);
 	
 				var sep = os.EOL,
