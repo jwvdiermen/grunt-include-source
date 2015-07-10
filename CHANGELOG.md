@@ -4,6 +4,10 @@ Here you can find the changes made over the course of history in the different r
 
 ## Release History
 
+### 2015-07-10 ver. 0.6.1
+
+* Add support to specify target with include options (see https://github.com/jwvdiermen/grunt-include-source/pull/39)
+
 ### 2015-05-24 ver. 0.6.0
 
 * Switch to `grunt.file.expandMapping` to support `rename` and `flatten` options (see https://github.com/jwvdiermen/grunt-include-source/pull/37)
