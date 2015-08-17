@@ -282,12 +282,19 @@ module.exports = function(grunt) {
 
 			includes.forEach(function(include, includeIndex) {
 				var files = [];
+				var baseUrl;
 				if (include.options.target && options.target !== include.options.target) {
 					grunt.log.debug('Include target is "' + include.options.target + '" and task target is "' + options.target + '", skipping include.');
 				} else {
 					files = resolveFiles(options, include.options);
 				}
 				orderFiles(files, include.options);
+				
+				if(include.options.baseUrl) {
+					baseUrl = grunt.config.process(include.options.baseUrl);
+				} else {
+					baseUrl = options.baseUrl;
+				}
 	
 				var sep = os.EOL,
 					lookFor = [ ' ', '\t', '\r', '\n' ],
@@ -329,8 +336,8 @@ module.exports = function(grunt) {
 					}
 
 					includeFragments.push(typeTemplates[includeType]
-						.replace(/\{filePath\}/g, url.resolve(include.options.baseUrl || options.baseUrl, file))
-						.replace(/\{filePathDecoded\}/g, decodeURI(url.resolve(include.options.baseUrl || options.baseUrl, file)))
+						.replace(/\{filePath\}/g, url.resolve(baseUrl, file))
+						.replace(/\{filePathDecoded\}/g, decodeURI(url.resolve(baseUrl, file)))
 					);
 				});
 
