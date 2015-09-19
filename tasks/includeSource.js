@@ -341,8 +341,8 @@ module.exports = function(grunt) {
 				var endMarker = null;
 				if (findEndMarker){
 					var nextInclude = includes[includeIndex + 1];
-					var nextPartIndex = nextInclude ? nextInclude.start : contents.length;
-					var between = contents.substring(include.start + currentOffset, nextPartIndex + currentOffset);
+					var nextPartIndex = nextInclude ? (nextInclude.start + currentOffset): contents.length;
+					var between = contents.substring(include.start + currentOffset, nextPartIndex);
 
 					endMarker = findEndMarker(between, include.start);
 				}
