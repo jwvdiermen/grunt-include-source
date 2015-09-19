@@ -32,6 +32,7 @@ module.exports = function(grunt) {
 		vars: {
 			hello: 'world',
 			testFilesPath: 'test/files',
+			testFilesUrl: 'test/files/',
 			multipleBasePath: [
 				'<%= vars.testFilesPath %>',
 				'test/multiple-paths'
@@ -66,6 +67,14 @@ module.exports = function(grunt) {
 						return newPath;
 					} else
 						return srcPath;
+				}
+			},
+			baseUrlHtmlTest: {
+				options: {
+					baseUrl: '<%= vars.testFilesUrl %>',
+				},
+				files: {
+					'tmp/baseUrl.html': '<%= vars.testFilesPath %>/baseUrl.html'
 				}
 			},
 			htmlTest: {
