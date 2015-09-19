@@ -4,6 +4,11 @@ Here you can find the changes made over the course of history in the different r
 
 ## Release History
 
+### 2015-09-19 ver. 0.7.0
+
+* Use global config to parse template variables in baseUrl strings (see https://github.com/jwvdiermen/grunt-include-source/pull/41)
+* Fix when the offset is negative, endMarker position calculations fail (see https://github.com/jwvdiermen/grunt-include-source/pull/43)
+
 ### 2015-07-10 ver. 0.6.1
 
 * Add support to specify target with include options (see https://github.com/jwvdiermen/grunt-include-source/pull/39)
