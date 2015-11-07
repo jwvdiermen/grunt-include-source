@@ -4,6 +4,10 @@ Here you can find the changes made over the course of history in the different r
 
 ## Release History
 
+### 2015-11-07 ver. 0.7.1
+
+* Allow directive in html to use multi lines (see https://github.com/jwvdiermen/grunt-include-source/pull/44)
+
 ### 2015-09-19 ver. 0.7.0
 
 * Use global config to parse template variables in baseUrl strings (see https://github.com/jwvdiermen/grunt-include-source/pull/41)
