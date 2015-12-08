@@ -137,7 +137,7 @@ module.exports = function(grunt) {
 		// Split patterns. Apperently, grunt.file.expandMapping doesn't automatically split
 		// comma seperated lists, even if it says so in the documentation.
 		// Split here manually so the exclusion patterns work.
-		if (typeof files == 'string') {
+		if (typeof files === 'string') {
 			files = files.split(',');
 		}
 
