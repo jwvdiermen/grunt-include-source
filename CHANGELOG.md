@@ -4,6 +4,10 @@ Here you can find the changes made over the course of history in the different r
 
 ## Release History
 
+### 2016-06-10 ver. 1.0.0
+
+* Update version numbers of npm modules to current versions (see https://github.com/jwvdiermen/grunt-include-source/pull/50)
+
 ### 2015-11-07 ver. 0.7.1
 
 * Allow directive in html to use multi lines (see https://github.com/jwvdiermen/grunt-include-source/pull/44)
