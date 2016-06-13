@@ -2,6 +2,10 @@
 
 > Include your sources into your HTML files automatically.
 
+## No longer maintained!
+
+**NOTE** This repository is no longer actively maintained, but pull requests will still be handled.
+
 ## Getting Started
 This plugin requires Grunt `~0.4.4`
 
