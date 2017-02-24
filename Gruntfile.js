@@ -102,6 +102,11 @@ module.exports = function(grunt) {
 					'tmp/index.jade': '<%= vars.testFilesPath %>/index.jade'
 				}
 			},
+			pugTest: {
+				files: {
+					'tmp/index.pug': '<%= vars.testFilesPath %>/index.pug'
+				}
+			},
 			lessTest: {
 				files: {
 					'tmp/main.less': '<%= vars.testFilesPath %>/main.less'
@@ -123,7 +128,7 @@ module.exports = function(grunt) {
 		nodeunit: {
 			tests: ['test/*_test.js'],
 		},
-		
+
 		lineending: {
 			options: {
 				eol: 'lf',

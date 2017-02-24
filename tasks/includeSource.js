@@ -58,6 +58,7 @@ module.exports = function(grunt) {
 		'html': parseSource('HTML', /<!---?\s*include:([\s\S]*?)-?--\s*>/gi),
 		'haml': parseSource('HAML', /-#\s+include:\s+(.*)/gi),
 		'jade': parseSource('JADE', /\/\/-?\s+include:\s+(.*)/gi),
+		'pug': parseSource('PUG', /\/\/-?\s+include:\s+(.*)/gi),
 		'scss': parseSource('SASS', /\/\/\s+include:\s+(.*)/gi),
 		'ts': parseSource('TS', /\/\/\/\s<!---?\s*include:\s+(.*)\s*-?--\s*>/gi)
 	};
@@ -66,6 +67,7 @@ module.exports = function(grunt) {
 		'html': findEndMarker('HTML', /<!---?\s*\/include\s+-?--\>/i),
 		'haml': findEndMarker('HAML', /-#\s+\/include/i),
 		'jade': findEndMarker('JADE', /\/\/-?\s+\/include/i),
+		'pug': findEndMarker('PUG', /\/\/-?\s+\/include/i),
 		'scss': findEndMarker('SASS', /\/\/\s+\/include/i),
 		'ts': findEndMarker('TS', /\/\/\/\s<!---?\s*\/include\s+-?--\>/i)
 	};
@@ -82,6 +84,11 @@ module.exports = function(grunt) {
 			'css': '%link{href: "{filePath}", rel: "stylesheet", type: "text/css"}/'
 		},
 		'jade':
+		{
+			'js': 'script(src="{filePath}")',
+			'css': 'link(href="{filePath}", rel="stylesheet", type="text/css")'
+		},
+		'pug':
 		{
 			'js': 'script(src="{filePath}")',
 			'css': 'link(href="{filePath}", rel="stylesheet", type="text/css")'
@@ -171,7 +178,7 @@ module.exports = function(grunt) {
 			return 1;
 		} else if (path1 < path2) {
 			return -1;
-		} else { 
+		} else {
 			return 0;
 		}
 	};
@@ -180,7 +187,7 @@ module.exports = function(grunt) {
 		var seg1 = path1.split(/[\\/]/);
 		var seg2 = path2.split(/[\\/]/);
 		var i, j;
-				
+
 		if (seg1.length === seg2.length) {
 			return pathCompareNatural(path1, path2);
 		} else {
@@ -191,15 +198,15 @@ module.exports = function(grunt) {
 				}
 			}
 			return seg1.length - seg2.length;
-		}				
-	};		
-	
-	var orderFiles = function (files, includeOptions) {
-		if ('top-down' === includeOptions.ordering) {
-			files.sort(pathCompareTopDown);		
 		}
 	};
-	
+
+	var orderFiles = function (files, includeOptions) {
+		if ('top-down' === includeOptions.ordering) {
+			files.sort(pathCompareTopDown);
+		}
+	};
+
 	// Register the task.
 	grunt.registerMultiTask('includeSource', 'Include lists of files into your source files automatically.', function() {
 		grunt.log.debug('Starting task "includeSource"...');
@@ -289,13 +296,13 @@ module.exports = function(grunt) {
 					files = resolveFiles(options, include.options);
 				}
 				orderFiles(files, include.options);
-				
+
 				if(include.options.baseUrl) {
 					baseUrl = grunt.config.process(include.options.baseUrl);
 				} else {
 					baseUrl = options.baseUrl;
 				}
-	
+
 				var sep = os.EOL,
 					lookFor = [ ' ', '\t', '\r', '\n' ],
 					i;
@@ -322,7 +329,7 @@ module.exports = function(grunt) {
 					// Keep it simple, if \r\n exists, use that, else just \n.
 					sep = /\r\n/g.test(contents) ? '\r\n' : '\n';
 				}
-				
+
 				var	includeFragments = [];
 				files.forEach(function(file) {
 					grunt.log.debug('Including file "' + file + '".');
