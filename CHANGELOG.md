@@ -4,6 +4,10 @@ Here you can find the changes made over the course of history in the different r
 
 ## Release History
 
+### 2017-02-24 ver. 1.1.0
+
+* Add Pug support (see https://github.com/jwvdiermen/grunt-include-source/pull/52)
+
 ### 2016-06-10 ver. 1.0.0
 
 * Update version numbers of npm modules to current versions (see https://github.com/jwvdiermen/grunt-include-source/pull/50)
