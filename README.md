@@ -45,7 +45,7 @@ grunt.initConfig({
 Type: `String` or `Array[String]`
 Default value: `''`
 
-The base path to use when expanding files. 
+The base path to use when expanding files.
 Can be an array to support expanding files from multiple paths.
 
 #### options.baseUrl
@@ -58,7 +58,7 @@ For example, setting `baseUrl` to `public/` will result in files being included 
 #### options.templates
 Type: `Object`
 
-The templates for sources included in `html`, `haml`, `jade`, `scss`, `less`, `ts` files. Definition of single template overrides its default equivalent only.
+The templates for sources included in `html`, `haml`, `jade`, `pug`, `scss`, `less`, `ts` files. Definition of single template overrides its default equivalent only.
 
 Example:
 ```js
@@ -75,7 +75,7 @@ includeSource: {
         js: '%script{src: "{filePath}"}/',
         css: '%link{href: "{filePath}", rel: "stylesheet"}/'
       },      
-      jade: {
+      jade: { // Or pug
         js: 'script(src="{filePath}", type="text/javascript")',    
         css: 'link(href="{filePath}", rel="stylesheet", type="text/css")'
       },
@@ -100,7 +100,7 @@ includeSource: {
 }
 ```
 
-As it was mentioned above, it is possible to override only necessary templates. 
+As it was mentioned above, it is possible to override only necessary templates.
 
 #### options.typeMappings
 Type: `Object`
@@ -142,7 +142,7 @@ Remove the path component from all matched src files. The src file path is still
 [grunt.file.expandMapping.flatten](http://gruntjs.com/api/grunt.file#grunt.file.expandmapping).
 
 ### Include syntax
-Currently supported: `html`, `haml`, `jade`, `scss`, `less` and `ts` (TypeScript).
+Currently supported: `html`, `haml`, `jade` / `pug`, `scss`, `less` and `ts` (TypeScript).
 
 #### HTML and CSHTML syntax
 `<!-- include: options_go_here_as_json -->`
@@ -207,7 +207,7 @@ To set the source file as the destination file use an `/include` comment:
 <script type="text/javascript" src="js/lib/dep1.js"></script>
 <!-- /include -->
 ```
-  
+
 When includeSource is run it will keep the include comments and only update the includes inside it.
 
 This works the same way for Less/Sass, by using `// /include`.
@@ -242,7 +242,7 @@ The file `index.tpl.html` could contain, for example:
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
-    <!-- 
+    <!--
       Automatically include Bower components. Use the "sources" object in your bower.json
       to specify which source files are which.
     -->
@@ -271,12 +271,12 @@ And the resulting file `index.html` will look something like:
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
-    <!-- 
+    <!--
       Automatically include Bower components. Use the "sources" object in your bower.json
       to specify which source files are which.
     -->
     <!-- include: "type": "css", "bower": "yourComponent" -->
-        
+
     <!--
       Include CSS files from a "tmp" directory, put there by another task.
       This shows how to override the default "basePath" set in the options.
