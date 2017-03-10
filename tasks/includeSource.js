@@ -286,7 +286,8 @@ module.exports = function(grunt) {
 			var currentOffset = 0;
 
 			grunt.log.debug('Found ' + includes.length + ' include statement(s).');
-
+			
+			var allFiles=[];
 			includes.forEach(function(include, includeIndex) {
 				var files = [];
 				var baseUrl;
@@ -297,6 +298,17 @@ module.exports = function(grunt) {
 				}
 				orderFiles(files, include.options);
 
+
+				//removes duplicated entry in the filelist
+				if(options.unique)
+				{
+					files = files.filter( function( afile ) {
+	  					return !allFiles.includes( afile );
+					} );
+
+					allFiles = allFiles.concat(files);
+				}
+				
 				if(include.options.baseUrl) {
 					baseUrl = grunt.config.process(include.options.baseUrl);
 				} else {
