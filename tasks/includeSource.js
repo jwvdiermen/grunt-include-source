@@ -286,6 +286,17 @@ module.exports = function(grunt) {
 			var currentOffset = 0;
 
 			grunt.log.debug('Found ' + includes.length + ' include statement(s).');
+
+			//backport of array includes
+			function arrayIncludes(a, obj) {
+			    for (var i = 0; i < a.length; i++) {
+			        if (a[i] === obj) {
+			            return true;
+			        }
+			    }
+			    return false;
+			}
+
 			
 			var allFiles=[];
 			includes.forEach(function(include, includeIndex) {
@@ -303,12 +314,13 @@ module.exports = function(grunt) {
 				if(options.unique)
 				{
 					files = files.filter( function( afile ) {
-	  					return !allFiles.includes( afile );
+	  					return !arrayIncludes(allFiles, afile );
 					} );
 
 					allFiles = allFiles.concat(files);
 				}
-				
+
+
 				if(include.options.baseUrl) {
 					baseUrl = grunt.config.process(include.options.baseUrl);
 				} else {
